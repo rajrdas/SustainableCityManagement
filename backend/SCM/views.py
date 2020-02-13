@@ -17,3 +17,7 @@ def DublinBikeView(request):
         raise Exception("An exception occurred")
     
     return HttpResponse(json.dumps(response.json()),content_type="application/json")
+@api_view()
+def EventView(request):
+    response = requests.get('https://app.ticketmaster.com/discovery/v2/events.json?city=Dublin&apikey=u2MCIW0dPwxqAZMCssL2PrGWWfdkGedj')
+    return HttpResponse(json.dumps(response.json()), content_type="application/json")
