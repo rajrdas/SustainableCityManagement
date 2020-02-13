@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Pollution from './pollution';
 import DublinBike from './dublinbike';
-import Gmaps from './gmaps';
+import Traffic from './Directions/traffic';
 import Bmaps from './bmaps';
 import Exp from './exp';
 import { logout } from '../actions/auth';
@@ -36,8 +36,8 @@ class TabMgmt extends React.Component{
                     <br/><h3>Not yet implemented</h3>
                     <br/><img src="https://cdn.mynotepaper.com/wp-content/uploads/2019/03/17160502/how-to-fix-the-429-too-many-requests-wordpress-error.png"/>
                   </Tab>
-                  <Tab eventKey="GoogleMaps" title="GoogleMaps">
-                    <Gmaps/>
+                  <Tab eventKey="Traffic" title="Traffic">
+                    <Traffic/>
                   </Tab>
                   <Tab eventKey="BingMaps" title="BingMaps">
                     <Exp/>
