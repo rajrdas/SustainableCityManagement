@@ -23,7 +23,7 @@ def EventView(request):
     return HttpResponse(json.dumps(response.json()), content_type="application/json")
 
 @api_view()
-def dubbike(request):
+def DublinBikeChartView(request):
     response = requests.get('https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=77cf7ab00377c7f4cc621765273db0e7daf18f82')
     response = response.json()
     data = []
