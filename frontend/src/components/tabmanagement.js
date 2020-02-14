@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Pollution from './pollution';
 import DublinBike from './dublinbike';
-import Gmaps from './gmaps';
+import Traffic from './Directions/traffic';
 import Bmaps from './bmaps';
 import Event from './event';
 import Exp from './exp';
@@ -36,8 +36,8 @@ class TabMgmt extends React.Component{
                   <Tab eventKey="Events" title="Events">
                     <Event />
                   </Tab>
-                  <Tab eventKey="GoogleMaps" title="GoogleMaps">
-                    <Gmaps/>
+                  <Tab eventKey="Traffic" title="Traffic">
+                    <Traffic/>
                   </Tab>
                   <Tab eventKey="BingMaps" title="BingMaps">
                     <Exp/>
