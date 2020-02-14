@@ -10,6 +10,6 @@ app_name = "SCM"
 urlpatterns = [
     path('pollution/', PollutionView),
     path('dublinbike/', DublinBikeView),
-    path('dubbike/', DublinBikeChartView),
+    path('biketrend/', DublinBikeChartView),
     path('event/', EventView),
 ]
