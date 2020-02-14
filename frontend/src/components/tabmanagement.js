@@ -4,6 +4,9 @@ import Tabs from 'react-bootstrap/Tabs'
 import Pollution from './pollution';
 import DublinBike from './dublinbike';
 import Gmaps from './gmaps';
+import Traffic from './Directions/traffic';
+import Bmaps from './bmaps';
+import Event from './event';
 import Exp from './exp';
 import { logout } from '../actions/auth';
 import { connect } from 'react-redux';
@@ -56,13 +59,13 @@ class TabMgmt extends React.Component{
 
 
                   <Tab eventKey="Events" title="Events">
-                    <br/><h3>Not yet implemented</h3>
-                    <br/><img src="https://cdn.mynotepaper.com/wp-content/uploads/2019/03/17160502/how-to-fix-the-429-too-many-requests-wordpress-error.png"/>
+                    <Event />
                   </Tab>
-
 
                   <Tab eventKey="GoogleMaps" title="GoogleMaps">
                     <Gmaps/>
+                  <Tab eventKey="Traffic" title="Traffic">
+                    <Traffic/>
                   </Tab>
 
 
