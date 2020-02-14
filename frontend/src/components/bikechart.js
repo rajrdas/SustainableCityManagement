@@ -14,7 +14,7 @@ class Bikechart extends React.Component {
 			  
 	};
 	componentDidMount() {
-	fetch('/SCM/dubbike')
+	fetch('/SCM/biketrend')
 		.then(res => res.json())
 		.then((data) => {
 			this.setState({ bike: data });
