@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Pollution from './pollution';
 import DublinBike from './dublinbike';
-import Gmaps from './gmaps';
+//import Gmaps from './gmaps';
 import Traffic from './Directions/traffic';
 import Bmaps from './bmaps';
 import Event from './event';
@@ -14,7 +14,7 @@ import { Navbar} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import Bikechart from './bikechart';
 import Bikepiechart from './bikepiechart';
-import pollutionpiechart from './pollutionchart';
+//import pollutionpiechart from './pollutionchart';
 import { Container, Row, Col} from 'react-bootstrap';
 
 class TabMgmt extends React.Component{
@@ -26,21 +26,41 @@ class TabMgmt extends React.Component{
 
         return(
                <div>
+                   <Row>
+                       <Col>
+                           <Navbar bg="transparent" expand="lg">
+                               <Navbar.Brand href="#home" inline>
+                                   Sustainable City Management
+                               </Navbar.Brand>
+                               <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                               <Navbar.Collapse id="basic-navbar-nav">
+                                       <Button variant='dark' onClick={this.props.logout}>Logout</Button>
+
+                               </Navbar.Collapse>
+                           </Navbar>
+                       </Col>
+                   </Row>
                  
-{/* div tag for navigation bar */}
-                 <div>      
-                    <Navbar expand='lg' bg='dark'>
-                    <Navbar.Brand>Dublin Dashboard</Navbar.Brand>
-                    <div>
-                     <Button variant='light' onClick={this.props.logout}>Logout</Button>
-                     </div>
-                    </Navbar>
-                 
-                  </div>
+
 {/* div tag for tabs */}
               <div>
             
                 <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+                  <Tab eventKey="Home" title="Home">
+                    <Container>
+                    <Row className="justify-content-md-center">
+                    <Col >
+                     <Bikechart/>
+                     </Col>
+                     <Col >
+                     <div >
+                      <Bikepiechart/>
+                      </div>
+                    </Col>
+                    </Row>
+                    </Container>
+                </Tab>
+
 
                   <Tab eventKey="DublinBus" title="DublinBus">
                     <br/><h3>Not yet implemented</h3>
@@ -62,16 +82,12 @@ class TabMgmt extends React.Component{
                     <Event />
                   </Tab>
 
-                  <Tab eventKey="GoogleMaps" title="GoogleMaps">
-                    <Gmaps/>
                   <Tab eventKey="Traffic" title="Traffic">
                     <Traffic/>
                   </Tab>
 
 
-                  <Tab eventKey="BingMaps" title="BingMaps">
-                    <Exp/>
-                  </Tab>
+
 
 
                   <Tab eventKey="Exp" title="Exp">
@@ -80,21 +96,10 @@ class TabMgmt extends React.Component{
 
                 </Tabs>
                 </div>
-             
+
 
  {/* chart */}
- <Container>
-<Row className="justify-content-md-center">
-<Col >
- <Bikechart/>
- </Col>
- <Col >
- <div >
-  <Bikepiechart/>
-  </div>
-</Col>
-</Row>
-</Container>
+
 </div>
              )
            }
