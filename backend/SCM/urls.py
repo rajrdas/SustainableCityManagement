@@ -2,6 +2,7 @@ from SCM.views import   (
                             PollutionView,
                             DublinBikeView,
                             push_notify,
+                            EventView,
                         )
 from django.urls import path
 
@@ -10,4 +11,5 @@ urlpatterns = [
     path('pollution/', PollutionView),
     path('dublinbike/', DublinBikeView),
     path('notification/', push_notify),
+    path('event/', EventView),
 ]
