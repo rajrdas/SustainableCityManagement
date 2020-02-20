@@ -9,7 +9,8 @@ import json
 def PollutionView(request):
     response = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
     return HttpResponse(json.dumps(response.json()),content_type="application/json")
-
+    
+@api_view()
 def DublinBikeView(request):
     try:
      response = requests.get(' https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=77cf7ab00377c7f4cc621765273db0e7daf18f82')
