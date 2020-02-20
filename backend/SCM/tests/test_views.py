@@ -17,22 +17,70 @@ class TestViews(TestCase):
         response = self.client.get( self.dublinbike_url)
         self.assertEquals(response.status_code, 200)
 
-    # def test_DublinBike_ResponseCheck(self):
+    def test_DublinBike_ResponseCheck(self):
 
-    #     response = self.client.get(self.dublinbike_url)
-    #     self.assertGreater(len(response),0)
+        response = self.client.get(self.dublinbike_url)
+        self.assertGreater(len(response.content),0)
+
+    def test_DublinBikeResponse_IsJson(self):
+
+        response = self.client.get( self.dublinbike_url)
+        if(response._headers['content-type'][1] == "application/json") :
+            self.assertTrue(1)
+        else :
+            self.assertTrue(0)
+
 
     def test_Pollution_StatusCode(self):
 
         response = self.client.get(self.pollution_url)
         self.assertEquals(response.status_code, 200)
 
+    def test_pollution_ResponseCheck(self):
+
+        response = self.client.get(self.pollution_url)
+        self.assertGreater(len(response.content),0)
+
+    def test_PollutionResponse_IsJson(self):
+
+        response = self.client.get( self.pollution_url)
+        if(response._headers['content-type'][1] == "application/json") :
+            self.assertTrue(1)
+        else :
+            self.assertTrue(0)
+
     def test_Event_StatusCode(self):
 
         response = self.client.get(self.event_url)
         self.assertEquals(response.status_code, 200)
 
+    def test_Event_ResponseCheck(self):
+
+        response = self.client.get(self.event_url)
+        self.assertGreater(len(response.content),0)
+
+    def test_EventResponse_IsJson(self):
+
+        response = self.client.get( self.event_url)
+        if(response._headers['content-type'][1] == "application/json") :
+            self.assertTrue(1)
+        else :
+            self.assertTrue(0)
+
     def test_DublinBikeChart_StatusCode(self):
 
         response = self.client.get(self.dublinbikechart_url)
         self.assertEquals(response.status_code, 200)
+
+    def test_DublinBikeChart_ResponseCheck(self):
+
+        response = self.client.get(self.dublinbikechart_url)
+        self.assertGreater(len(response.content),0)
+
+    def test_DublinBikeChartResponse_IsJson(self):
+
+        response = self.client.get( self.dublinbikechart_url)
+        if(response._headers['content-type'][1] == "application/json") :
+            self.assertTrue(1)
+        else :
+            self.assertTrue(0)
