@@ -30,6 +30,9 @@ class TestViews(TestCase):
         else :
             self.assertTrue(0)
 
+    def test_DublinBike_Exception(self):
+        with self.assertRaises(Exception): DublinBikeView(self.dublinbike_url)
+
 
     def test_Pollution_StatusCode(self):
 
@@ -49,6 +52,9 @@ class TestViews(TestCase):
         else :
             self.assertTrue(0)
 
+    def test_Pollution_Exception(self):
+        with self.assertRaises(Exception): PollutionView(self.pollution_url)
+
     def test_Event_StatusCode(self):
 
         response = self.client.get(self.event_url)
@@ -67,6 +73,10 @@ class TestViews(TestCase):
         else :
             self.assertTrue(0)
 
+
+    def test_Event_Exception(self):
+        with self.assertRaises(Exception): EventView(self.event_url)
+
     def test_DublinBikeChart_StatusCode(self):
 
         response = self.client.get(self.dublinbikechart_url)
@@ -84,3 +94,7 @@ class TestViews(TestCase):
             self.assertTrue(1)
         else :
             self.assertTrue(0)
+
+
+    def test_DublinBikeChart_Exception(self):
+        with self.assertRaises(Exception): DublinBikeChartView(self.dublinbikechart_url)
