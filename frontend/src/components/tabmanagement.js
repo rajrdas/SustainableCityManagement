@@ -3,6 +3,8 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Pollution from './pollution';
 import DublinBike from './dublinbike';
+import Gmaps from './gmaps';
+import Notification from "./notification";
 //import Gmaps from './gmaps';
 import Traffic from './Directions/traffic';
 import Bmaps from './bmaps';
@@ -93,6 +95,9 @@ class TabMgmt extends React.Component{
                   <Tab eventKey="Exp" title="Exp">
                     <Exp/>
                   </Tab>
+                 <Tab eventKey="notification" title="Notification">
+                  <Notification />
+                </Tab>
 
                 </Tabs>
                 </div>
@@ -110,7 +115,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(TabMgmt);
+export default connect(mapStateToProps, { logout })(TabMgmt);
