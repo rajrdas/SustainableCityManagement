@@ -1,0 +1,167 @@
+import React from 'react';
+import MUIDataTable from "mui-datatables";
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+
+
+
+const options = {
+    selectableRows: 'none',  	// Hide the checkbox column
+    elevation: 0,							// Shadow depth applied to Paper component
+    searchPlaceholder: "Start typing keyword to search"
+};
+
+
+const columns = [
+    {
+        name: "stopid",
+        label: "Stop ID",
+        options: {
+            filter: true,
+            sort: true,
+        }
+    },
+    {
+        name: "fullname",
+        label: "Stop Name",
+        options: {
+            filter: true,
+            sort: true,
+        }
+    },
+    {
+        name: "latitude",
+        label: "Latitude",
+        options: {
+            filter: true,
+            sort: true,
+        }
+    },
+    {
+        name: "longitude",
+        label: "Longitude",
+        options: {
+            filter: true,
+            sort: true,
+        }
+    },
+    {
+        name: "name",
+        label: "Bus Operators",
+        options: {
+            filter: true,
+            sort: true,
+        }
+    },
+    {
+        name: "operatortype",
+        label: "Operator Type",
+        options: {
+            filter: true,
+            sort: true,
+        }
+    },
+    {
+        name: "routes",
+        label: "Routes",
+        options: {
+            filter: true,
+            sort: true,
+        }
+    }
+];
+
+
+class DublinBus extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { dublinbus: [], offline: false };
+    }
+
+    getMuiTheme = () => createMuiTheme({
+        overrides: {
+            MUIDataTableHeadCell: {
+                fixedHeaderCommon: {
+                    "background-color": "#d8d8d8",
+                    "font-weight": 1000,
+                    "font-size": "medium"
+                }
+            }
+        }
+    })
+
+    componentDidMount() {
+        this.getData();
+        this.interval = setInterval(() => this.getData(), 30000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    getData() {
+        fetch('/SCM/dublinbus/')
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data.results)
+                var out = data.results;
+                out.forEach(element => {
+                    var name = element.operators[0].name
+                    var operatortype = element.operators[0].operatortype
+                    var allroutes = element.operators[0].routes
+                    element.name = name;
+                    element.operatortype = operatortype
+                    var routes = ""
+                    allroutes.forEach(element => {
+                        routes = routes + element + " "
+                    })
+                    element.routes = routes
+                });
+                console.log(out)
+                this.setState({ dublinbus: out, offline: false });
+            })
+        console.log(this.state.dublinbus);
+    }
+
+
+
+    render() {
+        return (
+            <div>
+                <center><h1>Dublin Bus</h1></center>
+                <br />
+                {this.state.offline ?
+                    <div><center>
+                        Connection to the server is broken. Data shown is the last updated data.
+                    </center></div>
+                    : ""}
+
+                <br />
+                <MuiThemeProvider theme={this.getMuiTheme()}>
+                    <MUIDataTable
+                        title={""}
+                        data={this.state.dublinbus}
+                        columns={columns}
+                        options={options}
+                    />
+                </MuiThemeProvider>
+
+            </div>
+        )
+    }
+
+
+};
+
+
+export default DublinBus;
+
+
+
+
+
+
+
+
+
+
