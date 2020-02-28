@@ -29,7 +29,7 @@ class LoginForm extends Component {
             label={label}
             type={type}
             input={input}
-            variant="outlined"
+            variant="outlined" 
             error={error}
         />
     );
