@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Card, Navbar, Form} from 'react-bootstrap';
 import LoginModal from './LoginModal';
-import Image from './GettyImages.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Timeline } from 'react-twitter-widgets'
 //import Logo from './logo.png'
