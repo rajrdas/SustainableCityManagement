@@ -7,6 +7,10 @@ import { Field, reduxForm } from 'redux-form';
 import { login } from '../actions/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, Tabs, Tab, Button, Modal } from 'react-bootstrap';
+import TextField from '@material-ui/core/TextField';
+
+const required = value => (value == null ? 'Required' : undefined);
+
 
 class LoginForm extends Component {
 
@@ -18,16 +22,16 @@ class LoginForm extends Component {
     }
   }
 
-
-  renderField = ({ input, label, type, meta: { touched, error } }) => {
+  renderField = ({ input, label, type, meta: { error } }) => {
     return (
-      <div className={`field ${touched && error ? 'error' : ''}`}>
-        <label>{label}</label>
-        <input {...input} type={type} />
-        {touched && error && (
-          <span className='ui pointing red basic label'>{error}</span>
-        )}
-      </div>
+        <TextField
+            {...input}
+            label={label}
+            type={type}
+            input={input}
+            variant="outlined"
+            error={error}
+        />
     );
   };
 
@@ -51,7 +55,6 @@ class LoginForm extends Component {
   open() {
     this.setState({
       showModal: true,
-
     });
   }
 
@@ -61,43 +64,51 @@ class LoginForm extends Component {
     }
     return (
   <div>
-    <Button variant="outline-dark" onClick={this.open.bind(this)}>Login/Register</Button>
+    <Button variant="outline-dark" onClick={this.open.bind(this)}>Login</Button>
 
-    <Modal size="lg" show={this.state.showModal} onHide={this.close.bind(this)}>
+    <Modal size="sm" show={this.state.showModal} onHide={this.close.bind(this)}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Login/Register Form
+          Login Form
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
       <div className='ui container'>
         <div className='ui segment'>
-          <form
-            onSubmit={this.props.handleSubmit(this.onSubmit)}
-            className='ui form'
-          >
-            <Field
-              name='username'
-              type='text'
-              component={this.renderField}
-              label='Username'
-            />
-            <Field
-              name='password'
-              type='password'
-              component={this.renderField}
-              label='Password'
-            />
-            <Field
-              name='non_field_errors'
-              type='hidden'
-              component={this.hiddenField}
-            />
-            <button className='ui primary button'>Login</button>
+          <form className='ui form'>
+            <Row style={{height:70}}>
+                <Col>
+                    <Field
+                      name='username'
+                      type='text'
+                      component={this.renderField}
+                      label='Username'
+                    />
+                </Col>
+            </Row>
+            <Row style={{height:70}}>
+                <Col>
+                    <Field
+                      name='password'
+                      type='password'
+                      component={this.renderField}
+                      label='Password'
+                    />
+                </Col>
+            </Row>
+            <Row style={{height:40}}>
+                <Col>
+                    <Field
+                      name='non_field_errors'
+                      type='hidden'
+                      component={this.hiddenField}
+                    />
+                </Col>
+            </Row>
+
+            <Button variant="dark" color="primary"  onClick={this.props.handleSubmit(this.onSubmit)}>Login</Button>
           </form>
-          <p style={{ marginTop: '1rem' }}>
-            Don't have an account? <Link to='/register'>Register</Link>
-          </p>
+
         </div>
       </div>
     </Modal.Body>

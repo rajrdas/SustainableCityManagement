@@ -38,7 +38,7 @@ class LandingPage extends React.Component {
             <Row style={{ marginTop: -8 }}>
                 <Col>
                     <div>
-                        <iframe src='https://www.youtube.com/embed/Rk8VibKA4Ws?autoplay=1&controls=0&autohide=1&disablekb=1&loop=1&modestbranding=1'
+                        <iframe src='https://www.youtube.com/embed/r3btlOJhJmc?autoplay=1&controls=0&autohide=1&disablekb=1&loop=1&modestbranding=1'
                             allow='autoplay; encrypted-media'
                             allowFullScreen='allowFullScreen'
                             title='video'
