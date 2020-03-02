@@ -36,8 +36,9 @@ class TabMgmt extends React.Component {
                                </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <Button variant='dark' onClick={this.props.logout}>Logout</Button>
+                <Notification/>
 
+                <Button variant='dark' onClick={this.props.logout}>Logout</Button>
               </Navbar.Collapse>
             </Navbar>
           </Col>
@@ -94,10 +95,6 @@ class TabMgmt extends React.Component {
             <Tab eventKey="Exp" title="Exp">
               <Exp />
             </Tab>
-            <Tab eventKey="notification" title="Notification">
-              <Notification />
-            </Tab>
-
           </Tabs>
         </div>
 
