@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Card, Navbar, Form} from 'react-bootstrap';
 import LoginModal from './LoginModal';
-import Image from './GettyImages.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Timeline } from 'react-twitter-widgets'
 //import Logo from './logo.png'
 import "../../node_modules/video-react/dist/video-react.css";
-//import dubVid from 'https://www.youtube.com/watch?v=r1n1qe_uG40'
+import dubVid from '../utility/Dublin4K.mp4'
 
 var sectionStyle = {
    backgroundImage: `url(${Image})`,
@@ -38,10 +37,11 @@ class LandingPage extends React.Component {
             <Row style={{ marginTop: -8 }}>
                 <Col>
                     <div>
-                        <iframe src='https://www.youtube.com/embed/r3btlOJhJmc?autoplay=1&controls=0&autohide=1&disablekb=1&loop=1&modestbranding=1'
+                        <iframe src={dubVid}
                             allow='autoplay; encrypted-media'
                             allowFullScreen='allowFullScreen'
                             title='video'
+                            frameborder="0"
                             style={{
                                 height:'42.25vw', width:'100vw',
                             }}

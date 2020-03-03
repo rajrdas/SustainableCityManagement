@@ -9,9 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, Tabs, Tab, Button, Modal } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 
-const required = value => (value == null ? 'Required' : undefined);
-
-
 class LoginForm extends Component {
 
   constructor() {
@@ -29,7 +26,7 @@ class LoginForm extends Component {
             label={label}
             type={type}
             input={input}
-            variant="outlined" 
+            variant="outlined"
             error={error}
         />
     );

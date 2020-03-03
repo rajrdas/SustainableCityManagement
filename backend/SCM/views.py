@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from rest_framework.decorators import api_view
-import requests
 import json
+
+import requests
+from django.http import HttpResponse
+from rest_framework.decorators import api_view
 
 
 @api_view()
@@ -11,12 +11,14 @@ def PollutionView(request):
         response = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
     except:
         raise Exception("An exception occurred")
-    return HttpResponse(json.dumps(response.json()),content_type="application/json")
-    
+    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+
+
 @api_view()
 def DublinBikeView(request):
     try:
-        response = requests.get(' https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=77cf7ab00377c7f4cc621765273db0e7daf18f82')
+        response = requests.get('https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey'
+                                '=77cf7ab00377c7f4cc621765273db0e7daf18f82')
     except:
         raise Exception("An exception occurred")
 
@@ -26,17 +28,19 @@ def DublinBikeView(request):
 @api_view()
 def EventView(request):
     try:
-        response = requests.get('https://app.ticketmaster.com/discovery/v2/events.json?city=Dublin&apikey=u2MCIW0dPwxqAZMCssL2PrGWWfdkGedj')
+        response = requests.get(
+            'https://app.ticketmaster.com/discovery/v2/events.json?city=Dublin&apikey=u2MCIW0dPwxqAZMCssL2PrGWWfdkGedj')
     except:
         raise Exception("An exception occurred")
-    
+
     return HttpResponse(json.dumps(response.json()), content_type="application/json")
 
 
 @api_view()
 def DublinBikeChartView(request):
     try:
-        response = requests.get('https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=77cf7ab00377c7f4cc621765273db0e7daf18f82')
+        response = requests.get(
+            'https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=77cf7ab00377c7f4cc621765273db0e7daf18f82')
         response = response.json()
         data = []
         for x in range(len(response)):
@@ -59,7 +63,7 @@ def push_notify(request):
     print([request.POST.get("interest", "null")])
     response = beams_client.publish_to_interests(
         interests=list([request.POST.get("interest", "null")]),
-        # interests=['hello'],
+        # interests=['route_one'],
         publish_body={
             'apns': {
                 'aps': {
@@ -68,13 +72,14 @@ def push_notify(request):
             },
             'fcm': {
                 'notification': {
-                    'title': str(request.POST.get("username", "not found")),
-                    'body': str("Alert: " + request.POST.get("age", "null") + " years old.")
+                    'title': str(request.POST.get("subject", "not found")),
+                    'body': str("Message: " + request.POST.get("message", "null")),
                 }
             }
         }
     )
     return HttpResponse("Pass!")
+
 
 @api_view()
 def DublinBusView(request):
