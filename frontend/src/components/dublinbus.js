@@ -2,15 +2,11 @@ import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-
-
 const options = {
-    selectableRows: 'none',  	// Hide the checkbox column
-    elevation: 0,							// Shadow depth applied to Paper component
+    selectableRows: 'none',	// Hide the checkbox column
+    elevation: 0, // Shadow depth applied to Paper component
     searchPlaceholder: "Start typing keyword to search"
 };
-
-
 const columns = [
     {
         name: "stopid",
@@ -70,7 +66,6 @@ const columns = [
     }
 ];
 
-
 class DublinBus extends React.Component {
 
     constructor(props) {
@@ -123,20 +118,16 @@ class DublinBus extends React.Component {
         console.log(this.state.dublinbus);
     }
 
-
-
     render() {
         return (
             <div>
                 <center><h1>Dublin Bus</h1></center>
-                <br />
                 {this.state.offline ?
                     <div><center>
                         Connection to the server is broken. Data shown is the last updated data.
                     </center></div>
                     : ""}
 
-                <br />
                 <MuiThemeProvider theme={this.getMuiTheme()}>
                     <MUIDataTable
                         title={""}
@@ -149,10 +140,7 @@ class DublinBus extends React.Component {
             </div>
         )
     }
-
-
 };
-
 
 export default DublinBus;
 

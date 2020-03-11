@@ -12,20 +12,11 @@ class notification extends React.Component {
       interest: "hello"
     };
   }
-  //   mySubmitHandler = event => {
-  //     event.preventDefault();
-  //     let age = this.state.age;
-  //     if (!Number(age)) {
-  //       alert("Your age must be a number");
-  //     }
-  //   };
 
   submitHandler = e => {
     e.preventDefault();
     console.log(this.state);
     axios(
-      //.post('http://localhost:8000/expt', {"num" : '123',"num1": '324'})
-      //.get('http://localhost:8000/expt/?num=1234')
       {
         method: "post",
         url: "http://localhost:8000/SCM/notification/",
@@ -48,9 +39,6 @@ class notification extends React.Component {
   render() {
     return (
       <form onSubmit={this.submitHandler}>
-        {/* <h1>
-          {this.state.username} {this.state.age}
-        </h1> */}
         <p>Title:</p>
         <input type="text" name="username" onChange={this.myChangeHandler} />
         <p>Body:</p>

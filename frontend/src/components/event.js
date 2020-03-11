@@ -3,14 +3,11 @@ import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-
-
 const options = {
     selectableRows: 'none',  	// Hide the checkbox column
     elevation: 0,							// Shadow depth applied to Paper component
     searchPlaceholder: "Start typing keyword to search"
 };
-
 
 const columns = [
     {
@@ -30,12 +27,12 @@ const columns = [
         }
     },
     {
-            name: "location",
-            label: "Venue",
-            options: {
-                filter: true,
-                sort: true,
-            }
+        name: "location",
+        label: "Venue",
+        options: {
+            filter: true,
+            sort: true,
+        }
     },
 
 ];
@@ -79,29 +76,23 @@ class Event extends React.Component {
                     element.date = date;
                     element.location = location;
                 });
-                this.setState({ event: out, offline: false  });
+                this.setState({ event: out, offline: false });
             })
             .catch(error => {
                 this.setState({ offline: true });
             });
-        //console.log(this.state.offline);
 
     }
-
-
 
     render() {
         return (
             <div>
                 <center><h1>Events</h1></center>
-                <br />
                 {this.state.offline ?
                     <div><center>
                         Connection to the server is broken. Data shown is the last updated data.
                     </center></div>
-                 : "" }
-
-                <br />
+                    : ""}
                 <MuiThemeProvider theme={this.getMuiTheme()}>
                     <MUIDataTable
                         title={""}
@@ -110,14 +101,10 @@ class Event extends React.Component {
                         options={options}
                     />
                 </MuiThemeProvider>
-
             </div>
         )
     }
-
-
 };
-
 
 export default Event;
 
