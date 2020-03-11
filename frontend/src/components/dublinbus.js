@@ -1,6 +1,8 @@
 import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { CircularProgress } from '@material-ui/core';
+import { Row, Col } from 'react-bootstrap';
 
 const options = {
     selectableRows: 'none',	// Hide the checkbox column
@@ -112,30 +114,52 @@ class DublinBus extends React.Component {
                     })
                     element.routes = routes
                 });
-                console.log(out)
                 this.setState({ dublinbus: out, offline: false });
             })
-        console.log(this.state.dublinbus);
     }
 
     render() {
         return (
             <div>
-                <center><h1>Dublin Bus</h1></center>
-                {this.state.offline ?
-                    <div><center>
-                        Connection to the server is broken. Data shown is the last updated data.
-                    </center></div>
-                    : ""}
-
-                <MuiThemeProvider theme={this.getMuiTheme()}>
-                    <MUIDataTable
-                        title={""}
-                        data={this.state.dublinbus}
-                        columns={columns}
-                        options={options}
-                    />
-                </MuiThemeProvider>
+                <div>
+                    <Row>
+                        <Col></Col>
+                        <Col>
+                            <h1 style={{ textAlign: 'center' }}>Dublin Bus</h1>
+                        </Col>
+                        <Col></Col>
+                    </Row>
+                </div>
+                {
+                    this.state.offline ?
+                        <div style={{ textAlign: 'center' }}>
+                            Connection to the server is broken. Data shown is the last updated data.
+                        </div>
+                        : ""
+                }
+                {
+                    this.state.dublinbus.length === 0 ?
+                        <div>
+                            <Row>
+                                <Col></Col>
+                                <Col style={{ textAlign: 'center' }}>
+                                    <h3>Loading Data</h3>
+                                    <CircularProgress size={24}
+                                        thickness={4} />
+                                </Col>
+                                <Col></Col>
+                            </Row>
+                        </div>
+                        :
+                        <MuiThemeProvider theme={this.getMuiTheme()}>
+                            <MUIDataTable
+                                title={""}
+                                data={this.state.dublinbus}
+                                columns={columns}
+                                options={options}
+                            />
+                        </MuiThemeProvider>
+                }
 
             </div>
         )
