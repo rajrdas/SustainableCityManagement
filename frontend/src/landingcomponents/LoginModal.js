@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../actions/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Row, Col, Tabs, Tab, Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 class LoginForm extends Component {
 
