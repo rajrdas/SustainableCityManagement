@@ -121,15 +121,13 @@ class DublinBus extends React.Component {
     render() {
         return (
             <div>
-                <div>
-                    <Row>
-                        <Col></Col>
-                        <Col>
-                            <h1 style={{ textAlign: 'center' }}>Dublin Bus</h1>
-                        </Col>
-                        <Col></Col>
-                    </Row>
-                </div>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <h1 style={{ textAlign: 'center' }}>Dublin Bus</h1>
+                    </Col>
+                    <Col></Col>
+                </Row>
                 {
                     this.state.offline ?
                         <div style={{ textAlign: 'center' }}>
@@ -139,28 +137,29 @@ class DublinBus extends React.Component {
                 }
                 {
                     this.state.dublinbus.length === 0 ?
-                        <div>
-                            <Row>
-                                <Col></Col>
-                                <Col style={{ textAlign: 'center' }}>
-                                    <h3>Loading Data</h3>
-                                    <CircularProgress size={24}
-                                        thickness={4} />
-                                </Col>
-                                <Col></Col>
-                            </Row>
-                        </div>
+                        <Row>
+                            <Col></Col>
+                            <Col style={{ textAlign: 'center' }}>
+                                <h3>Loading Data</h3>
+                                <CircularProgress size={24}
+                                    thickness={4} />
+                            </Col>
+                            <Col></Col>
+                        </Row>
                         :
-                        <MuiThemeProvider theme={this.getMuiTheme()}>
-                            <MUIDataTable
-                                title={""}
-                                data={this.state.dublinbus}
-                                columns={columns}
-                                options={options}
-                            />
-                        </MuiThemeProvider>
+                        <Row>
+                            <Col>
+                                <MuiThemeProvider theme={this.getMuiTheme()}>
+                                    <MUIDataTable
+                                        title={""}
+                                        data={this.state.dublinbus}
+                                        columns={columns}
+                                        options={options}
+                                    />
+                                </MuiThemeProvider>
+                            </Col>
+                        </Row>
                 }
-
             </div>
         )
     }
