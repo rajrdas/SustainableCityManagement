@@ -29,10 +29,15 @@ class LandingPage extends React.Component {
                 <Row style={{ marginTop: -8 }}>
                     <Col>
                         <div>
-                            <video src={dubVid}
-                                autoplay="true"
-                                loop="true">
-                            </video>
+                        <iframe src={dubVid}
+                            allow='autoplay; encrypted-media'
+                            allowFullScreen='allowFullScreen'
+                            title='video'
+                            frameborder="0"
+                            style={{
+                                height:'42.25vw', width:'100vw',
+                            }}
+                        />
                         </div>
                     </Col>
                 </Row>

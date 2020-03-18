@@ -127,7 +127,7 @@ class Notification extends React.Component {
 
 
 
-            <Button variant="light" color="primary"  onClick={this.submitHandler}>Send</Button>
+            <Button className="buttonStyle" variant="light" color="primary"  onClick={this.submitHandler}>Send</Button>
           </form>
           </Col>
           <Col>
