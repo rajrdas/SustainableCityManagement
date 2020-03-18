@@ -10,16 +10,3 @@
     border: 1px solid #343a40;
     background-color: white;
 }
-
-.button2Style {
-    color: black;
-    border: 1px solid white;
-    background-color: white;
-    margin: 5px;
-}
-
-.button2Style:hover {
-    color:white;
-    border: 1px solid #343a40;
-    background-color: #343a40;
-}

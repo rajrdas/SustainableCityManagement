@@ -70,7 +70,7 @@ class Notification extends React.Component {
   render() {
     return (
   <div>
-    <Button className="button2Style" onClick={this.open.bind(this)}>Send Notification</Button>
+    <Button className="buttonStyle" onClick={this.open.bind(this)}>Send Notification</Button>
 
     <Modal size="lg" show={this.state.showModal} onHide={this.close.bind(this)}>
       <Modal.Header closeButton>

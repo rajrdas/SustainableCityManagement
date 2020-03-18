@@ -53,8 +53,9 @@ class TabMgmt extends React.Component {
               <Button id="bike" onClick={this.showComponent.bind(this)} className="buttonStyle">Dublin Bike</Button>
               <Button id="pollution" onClick={this.showComponent.bind(this)} className="buttonStyle">Pollution</Button>
               <Button id="events" onClick={this.showComponent.bind(this)} className="buttonStyle">Events</Button>
+              <Button id="notification" onClick={this.showComponent.bind(this)} className="buttonStyle">Notification</Button>
               <Notification/>
-              <Button className="button2Style" onClick={this.props.logout}>Log Out</Button>
+              <Button className="buttonStyle" onClick={this.props.logout}>Log Out</Button>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
