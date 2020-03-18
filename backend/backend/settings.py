@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'SCM',
     'corsheaders',            
     'rest_framework',
-    "knox",
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +49,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -139,3 +138,10 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://localhost:8000',
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        #'LOCATION': 'unique-snowflake',
+    }
+}

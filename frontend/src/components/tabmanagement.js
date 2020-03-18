@@ -1,56 +1,70 @@
 import React from 'react';
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
-import Pollution from './pollution';
-import DublinBike from './dublinbike';
-import Gmaps from './gmaps';
-import Bmaps from './bmaps';
-import Exp from './exp';
 import { logout } from '../actions/auth';
 import { connect } from 'react-redux';
+import { Navbar, Nav, Button } from 'react-bootstrap';
+import BikeChart from './bikechart';
+import Pollution from './pollution';
+import DublinBike from './dublinbike';
+import DublinBus from './dublinbus'
+import Event from './event';
+import Notification from './notification';
+import '../utility/tabmanagement.css'
 
 
+class TabMgmt extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { component: <BikeChart /> }
+  }
+  showComponent(e) {
+    if (typeof (e) === "undefined") {
+      return this.state.component;
+    } else if (e.target.id === "bus") {
+      this.setState({ component: <DublinBus /> })
+      return this.state.component;
+    } else if (e.target.id === "pollution") {
+      this.setState({ component: <Pollution /> })
+      return this.state.component;
+    } else if (e.target.id === "events") {
+      this.setState({ component: <Event /> })
+      return this.state.component;
+    } else if (e.target.id === "bike") {
+      this.setState({ component: <DublinBike /> })
+      return this.state.component;
+    } else if (e.target.id === "home") {
+      this.setState({ component: <BikeChart /> })
+      return this.state.component;
+    } else {
+      this.setState({component: <Notification/>})
+      return this.state.component;
+    }
+  }
 
-class TabMgmt extends React.Component{
-
-    render(){
-
-      const { user, isAuthenticated } = this.props.auth; // added
-
-        return(
-               <div>
-                <button onClick={this.props.logout}>Logout</button>
-
-                <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                  <Tab eventKey="DublinBus" title="DublinBus">
-                    <br/><h3>Not yet implemented</h3>
-                    <br/><img src="https://cdn.mynotepaper.com/wp-content/uploads/2019/03/17160502/how-to-fix-the-429-too-many-requests-wordpress-error.png"/>
-                  </Tab>
-                  <Tab eventKey="Pollution" title="Pollution">
-                    <Pollution/>
-                  </Tab>
-                  <Tab eventKey="DublinBike" title="Dublin Bike">
-                      <DublinBike />
-                  </Tab>
-                  <Tab eventKey="Events" title="Events">
-                    <br/><h3>Not yet implemented</h3>
-                    <br/><img src="https://cdn.mynotepaper.com/wp-content/uploads/2019/03/17160502/how-to-fix-the-429-too-many-requests-wordpress-error.png"/>
-                  </Tab>
-                  <Tab eventKey="GoogleMaps" title="GoogleMaps">
-                    <Gmaps/>
-                  </Tab>
-                  <Tab eventKey="BingMaps" title="BingMaps">
-                    <Exp/>
-                  </Tab>
-                  <Tab eventKey="Exp" title="Exp">
-                    <Exp/>
-                  </Tab>
-
-                </Tabs>
-             </div>
-             )
-           }
-
+  render() {
+    return (
+      <div>
+        <Navbar bg="dark" expand="lg">
+          <Navbar.Brand href="#home" style={{ color: "white" }}><h1>Sustainable City Management</h1></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <Button id="home" onClick={this.showComponent.bind(this)} className="buttonStyle">Home</Button>
+              <Button id="bus" onClick={this.showComponent.bind(this)} className="buttonStyle">Dublin Bus</Button>
+              <Button id="bike" onClick={this.showComponent.bind(this)} className="buttonStyle">Dublin Bike</Button>
+              <Button id="pollution" onClick={this.showComponent.bind(this)} className="buttonStyle">Pollution</Button>
+              <Button id="events" onClick={this.showComponent.bind(this)} className="buttonStyle">Events</Button>
+              <Notification/>
+              <Button className="button2Style" onClick={this.props.logout}>Log Out</Button>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <div>
+          {this.showComponent()}
+          }
+        </div>
+      </div>
+    )
+  }
 };
 
 const mapStateToProps = state => ({
