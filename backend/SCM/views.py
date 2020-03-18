@@ -3,19 +3,15 @@ import json
 import requests
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
-from background_task import background
-from timeloop import Timeloop
-from datetime import timedelta
-import random
 from django.core.cache import cache
+from datetime import datetime
 
-exp = ''
 
 @api_view()
 def PollutionView(request):
     try:
-        response = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
-    except:
+        response = cache.get("pol")
+    except Exception as e:
         raise Exception("An exception occurred")
     return HttpResponse(json.dumps(response.json()), content_type="application/json")
 
@@ -23,8 +19,7 @@ def PollutionView(request):
 @api_view()
 def DublinBikeView(request):
     try:
-        response = requests.get('https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey'
-                                '=77cf7ab00377c7f4cc621765273db0e7daf18f82')
+        response = cache.get("bike")
     except:
         raise Exception("An exception occurred")
 
@@ -34,8 +29,7 @@ def DublinBikeView(request):
 @api_view()
 def EventView(request):
     try:
-        response = requests.get(
-            'https://app.ticketmaster.com/discovery/v2/events.json?city=Dublin&apikey=u2MCIW0dPwxqAZMCssL2PrGWWfdkGedj')
+        response = cache.get("event")
     except:
         raise Exception("An exception occurred")
 
@@ -45,8 +39,7 @@ def EventView(request):
 @api_view()
 def DublinBikeChartView(request):
     try:
-        response = requests.get(
-            'https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=77cf7ab00377c7f4cc621765273db0e7daf18f82')
+        response = cache.get("bike")
         response = response.json()
         data = []
         for x in range(len(response)):
@@ -89,35 +82,37 @@ def push_notify(request):
 
 @api_view()
 def DublinBusView(request):
-    response = requests.get(
-        'https://data.smartdublin.ie/cgi-bin/rtpi/busstopinformation')
+    response = cache.get("bus")
     return HttpResponse(json.dumps(response.json()), content_type="application/json")
+
 
 #################################################################
 # Code for Scheduler, under development --- PLEASE DO NOT CHANGE
 #################################################################
-def back(request):
-    response = cache.get("exp")
-    c2 = cache.get("exp2")
-    print (c2)
-    return HttpResponse(json.dumps(response))
+def getAPIdata():
+    print("[%s] Getting API data" %datetime.now())
+    try:  # Get pollution
+        pol = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
+        cache.set("pol", pol)
+    except Exception as e:
+        pass
 
-def hello():
-    #global exp
-    exp = {'name':'Raj','num':random.randint(0,10)}
-    exp2 = {'desc' : 'experiment'}
-    #print (exp)
-    #print("Hello!")
-    cache.set("exp",exp)
-    cache.set("exp2",exp2)
+    try:  # Get bike
+        bike = requests.get('https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey'
+                            '=77cf7ab00377c7f4cc621765273db0e7daf18f82')
+        cache.set("bike", bike)
+    except Exception as e:
+        pass
 
-var = {'generatedAt': '2020-03-10 01:15', 'generatedBy': 'Environmental Protection Agency',
-       'licenseInformation': 'This data is OPEN DATA and is licensed under a Creative Commons Attribution 4.0 ',
-       'aqihsummary': [{'aqih-region': 'Raj1', 'aqih': 'Das1'},
-                       {'aqih-region': 'Raj2', 'aqih': 'Das2'},
-                       {'aqih-region': 'Raj3', 'aqih': 'Das3'},
-                       {'aqih-region': 'Raj4', 'aqih': 'Das4'},
-                       {'aqih-region': 'Raj5', 'aqih': 'Das5'},
-                       {'aqih-region': 'Raj6', 'aqih': 'Das6'}]}
+    try:  # Get events
+        event = requests.get(
+            'https://app.ticketmaster.com/discovery/v2/events.json?city=Dublin&apikey=u2MCIW0dPwxqAZMCssL2PrGWWfdkGedj')
+        cache.set("event", event)
+    except Exception as e:
+        pass
 
-#######################################################################################
+    try:  # Get bus
+        bus = requests.get('https://data.smartdublin.ie/cgi-bin/rtpi/busstopinformation')
+        cache.set("bus", bus)
+    except Exception as e:
+        pass
