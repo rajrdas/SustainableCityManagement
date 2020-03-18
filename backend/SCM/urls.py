@@ -11,7 +11,6 @@ from django.urls import path
 from timeloop import Timeloop
 from datetime import timedelta
 
-
 jobs = Timeloop()
 
 app_name = "SCM"
@@ -24,13 +23,12 @@ urlpatterns = [
     path('dublinbus/', DublinBusView),
 ]
 
-getAPIdata()
+getAPIdata()  # Initial call to set cache
 
 
-@jobs.job(interval=timedelta(seconds=5))
+@jobs.job(interval=timedelta(minutes=2))
 def call():
     getAPIdata()
 
 
 jobs.start(block=False)
-

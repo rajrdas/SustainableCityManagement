@@ -72,6 +72,7 @@ class Notification extends React.Component {
   <div>
     <Button className="button2Style" onClick={this.open.bind(this)}>Send Notification</Button>
 
+
     <Modal size="lg" show={this.state.showModal} onHide={this.close.bind(this)}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
