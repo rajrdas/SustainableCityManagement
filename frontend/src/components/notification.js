@@ -70,7 +70,8 @@ class Notification extends React.Component {
   render() {
     return (
   <div>
-    <Button className="buttonStyle" onClick={this.open.bind(this)}>Send Notification</Button>
+    <Button className="button2Style" onClick={this.open.bind(this)}>Send Notification</Button>
+
 
     <Modal size="lg" show={this.state.showModal} onHide={this.close.bind(this)}>
       <Modal.Header closeButton>
@@ -126,7 +127,7 @@ class Notification extends React.Component {
 
 
 
-            <Button variant="dark" color="primary"  onClick={this.submitHandler}>Send</Button>
+            <Button variant="light" color="primary"  onClick={this.submitHandler}>Send</Button>
           </form>
           </Col>
           <Col>
