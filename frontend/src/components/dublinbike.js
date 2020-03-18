@@ -59,17 +59,17 @@ const columns = [
             sort: false,
         }
     },
-    {
-        name: "formattedTime",
-        label: "Location",
-        options: {
-            filter: true,
-            sort: false,
-            customBodyRender: (value, tableMeta, updateValue) => {
-                return <button>View on Map</button>;
-            }
-        }
-    },
+//    {
+//        name: "formattedTime",
+//        label: "Location",
+//        options: {
+//            filter: true,
+//            sort: false,
+//            customBodyRender: (value, tableMeta, updateValue) => {
+//                return <button>View on Map</button>;
+//            }
+//        }
+//    },
 
 ];
 

@@ -5,15 +5,11 @@ from SCM.views import (
     EventView,
     DublinBikeChartView,
     DublinBusView,
-    hello,
-    back
+    getAPIdata
 )
 from django.urls import path
-
-import random
 from timeloop import Timeloop
 from datetime import timedelta
-
 
 jobs = Timeloop()
 
@@ -25,17 +21,14 @@ urlpatterns = [
     path('biketrend/', DublinBikeChartView, name='DublinBikeChartView'),
     path('event/', EventView, name='EventView'),
     path('dublinbus/', DublinBusView),
-    path('back/',back)
 ]
 
-#################################################################
-# Code for Scheduler, under development --- PLEASE DO NOT CHANGE
-#################################################################
+getAPIdata()  # Initial call to set cache
 
-@jobs.job(interval=timedelta(seconds=5))
+
+@jobs.job(interval=timedelta(minutes=2))
 def call():
-    hello()
+    getAPIdata()
 
 
 jobs.start(block=False)
-
