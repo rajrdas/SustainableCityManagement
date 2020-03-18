@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { logout } from '../actions/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Row, Col, Tabs, Tab, Button, Modal } from 'react-bootstrap';
+import { Row, Col, Button, Modal } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import axios from "axios";
 
-const required = value => (value == null ? 'Required' : undefined);
 const qs = require("qs");
 
 class Notification extends React.Component {
@@ -43,7 +39,9 @@ class Notification extends React.Component {
           })
           .catch(error => {
             console.log(error);
-          });
+          })
+          .finally(this.close.bind(this));
+
       };
 
   myChangeHandler = event => {
@@ -72,12 +70,12 @@ class Notification extends React.Component {
   render() {
     return (
   <div>
-    <Button variant="dark" onClick={this.open.bind(this)}>Send Notification</Button>
+    <Button className="buttonStyle" onClick={this.open.bind(this)}>Send Notification</Button>
 
     <Modal size="lg" show={this.state.showModal} onHide={this.close.bind(this)}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Login Form
+          Send Notification
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -153,8 +151,6 @@ class Notification extends React.Component {
     );
   }
 }
-
-
 
 const mapStateToProps = state => ({
   auth: state.auth

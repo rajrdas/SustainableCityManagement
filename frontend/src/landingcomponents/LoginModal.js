@@ -1,12 +1,12 @@
 // frontend/src/components/auth/LoginForm.js
 
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../actions/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Row, Col, Tabs, Tab, Button, Modal } from 'react-bootstrap';
+import { Row, Col, Button, Modal } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 
 class LoginForm extends Component {

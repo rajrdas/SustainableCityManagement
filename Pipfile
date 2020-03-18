@@ -14,6 +14,8 @@ dnspython = "*"
 requests = "*"
 django-rest-knox = "*"
 pusher-push-notifications = "*"
+django-background-tasks = "*"
+timeloop = "*"
 
 [requires]
 python_version = "3.7"
