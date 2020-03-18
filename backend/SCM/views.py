@@ -3,7 +3,13 @@ import json
 import requests
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
+from background_task import background
+from timeloop import Timeloop
+from datetime import timedelta
+import random
+from django.core.cache import cache
 
+exp = ''
 
 @api_view()
 def PollutionView(request):
@@ -86,3 +92,32 @@ def DublinBusView(request):
     response = requests.get(
         'https://data.smartdublin.ie/cgi-bin/rtpi/busstopinformation')
     return HttpResponse(json.dumps(response.json()), content_type="application/json")
+
+#################################################################
+# Code for Scheduler, under development --- PLEASE DO NOT CHANGE
+#################################################################
+def back(request):
+    response = cache.get("exp")
+    c2 = cache.get("exp2")
+    print (c2)
+    return HttpResponse(json.dumps(response))
+
+def hello():
+    #global exp
+    exp = {'name':'Raj','num':random.randint(0,10)}
+    exp2 = {'desc' : 'experiment'}
+    #print (exp)
+    #print("Hello!")
+    cache.set("exp",exp)
+    cache.set("exp2",exp2)
+
+var = {'generatedAt': '2020-03-10 01:15', 'generatedBy': 'Environmental Protection Agency',
+       'licenseInformation': 'This data is OPEN DATA and is licensed under a Creative Commons Attribution 4.0 ',
+       'aqihsummary': [{'aqih-region': 'Raj1', 'aqih': 'Das1'},
+                       {'aqih-region': 'Raj2', 'aqih': 'Das2'},
+                       {'aqih-region': 'Raj3', 'aqih': 'Das3'},
+                       {'aqih-region': 'Raj4', 'aqih': 'Das4'},
+                       {'aqih-region': 'Raj5', 'aqih': 'Das5'},
+                       {'aqih-region': 'Raj6', 'aqih': 'Das6'}]}
+
+#######################################################################################

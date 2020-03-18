@@ -1,16 +1,14 @@
 import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-
-
+import { CircularProgress } from '@material-ui/core';
+import { Row, Col } from 'react-bootstrap';
 
 const options = {
-    selectableRows: 'none',  	// Hide the checkbox column
-    elevation: 0,							// Shadow depth applied to Paper component
+    selectableRows: 'none',	// Hide the checkbox column
+    elevation: 0, // Shadow depth applied to Paper component
     searchPlaceholder: "Start typing keyword to search"
 };
-
-
 const columns = [
     {
         name: "stopid",
@@ -70,7 +68,6 @@ const columns = [
     }
 ];
 
-
 class DublinBus extends React.Component {
 
     constructor(props) {
@@ -103,7 +100,6 @@ class DublinBus extends React.Component {
         fetch('/SCM/dublinbus/')
             .then(res => res.json())
             .then((data) => {
-                console.log(data.results)
                 var out = data.results;
                 out.forEach(element => {
                     var name = element.operators[0].name
@@ -117,51 +113,56 @@ class DublinBus extends React.Component {
                     })
                     element.routes = routes
                 });
-                console.log(out)
                 this.setState({ dublinbus: out, offline: false });
             })
-        console.log(this.state.dublinbus);
     }
-
-
 
     render() {
         return (
             <div>
-                <center><h1>Dublin Bus</h1></center>
-                <br />
-                {this.state.offline ?
-                    <div><center>
-                        Connection to the server is broken. Data shown is the last updated data.
-                    </center></div>
-                    : ""}
-
-                <br />
-                <MuiThemeProvider theme={this.getMuiTheme()}>
-                    <MUIDataTable
-                        title={""}
-                        data={this.state.dublinbus}
-                        columns={columns}
-                        options={options}
-                    />
-                </MuiThemeProvider>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <h1 style={{ textAlign: 'center' }}>Dublin Bus</h1>
+                    </Col>
+                    <Col></Col>
+                </Row>
+                {
+                    this.state.offline ?
+                        <div style={{ textAlign: 'center' }}>
+                            Connection to the server is broken. Data shown is the last updated data.
+                        </div>
+                        : ""
+                }
+                {
+                    this.state.dublinbus.length === 0 ?
+                        <Row>
+                            <Col></Col>
+                            <Col style={{ textAlign: 'center' }}>
+                                <h3>Loading Data</h3>
+                                <CircularProgress size={24}
+                                    thickness={4} />
+                            </Col>
+                            <Col></Col>
+                        </Row>
+                        :
+                        <Row>
+                            <Col>
+                                <MuiThemeProvider theme={this.getMuiTheme()}>
+                                    <MUIDataTable
+                                        title={""}
+                                        data={this.state.dublinbus}
+                                        columns={columns}
+                                        options={options}
+                                    />
+                                </MuiThemeProvider>
+                            </Col>
+                        </Row>
+                }
 
             </div>
         )
     }
-
-
 };
 
-
 export default DublinBus;
-
-
-
-
-
-
-
-
-
-

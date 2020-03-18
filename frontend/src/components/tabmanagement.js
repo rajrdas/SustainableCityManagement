@@ -1,114 +1,78 @@
 import React from 'react';
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
-import Pollution from './pollution';
-import DublinBike from './dublinbike';
-import DublinBus from './dublinbus';
-import Notification from "./notification";
-//import Gmaps from './gmaps';
-import Traffic from './Directions/traffic';
-import Bmaps from './bmaps';
-import Event from './event';
-import Exp from './exp';
 import { logout } from '../actions/auth';
 import { connect } from 'react-redux';
-import { Navbar } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import Bikechart from './bikechart';
-import Bikepiechart from './bikepiechart';
-//import pollutionpiechart from './pollutionchart';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
+import BikeChart from './bikechart';
+import Pollution from './pollution';
+import DublinBike from './dublinbike';
+import DublinBus from './dublinbus'
+import Event from './event';
+import Notification from './notification';
+import '../utility/tabmanagement.css'
+
 
 class TabMgmt extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.state = { component: <BikeChart /> }
+  }
+  showComponent(e) {
+    if (typeof (e) === "undefined") {
+      return this.state.component;
+    } else if (e.target.id === "bus") {
+      this.setState({ component: <DublinBus /> })
+      return this.state.component;
+    } else if (e.target.id === "pollution") {
+      this.setState({ component: <Pollution /> })
+      return this.state.component;
+    } else if (e.target.id === "events") {
+      this.setState({ component: <Event /> })
+      return this.state.component;
+    } else if (e.target.id === "bike") {
+      this.setState({ component: <DublinBike /> })
+      return this.state.component;
+    } else if (e.target.id === "home") {
+      this.setState({ component: <BikeChart /> })
+      return this.state.component;
+    } else {
+      this.setState({component: <Notification/>})
+      return this.state.component;
+    }
+  }
 
   render() {
-
-    const { user, isAuthenticated } = this.props.auth; // added
-
     return (
       <div>
-        <Row>
-          <Col>
-            <Navbar bg="transparent" expand="lg">
-              <Navbar.Brand href="#home" inline>
-                Sustainable City Management
-                               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Notification/>
-
-                <Button variant='dark' onClick={this.props.logout}>Logout</Button>
-              </Navbar.Collapse>
-            </Navbar>
-          </Col>
-        </Row>
-
-
-        {/* div tag for tabs */}
+        <Navbar bg="dark" expand="lg">
+          <Navbar.Brand href="#home" style={{ color: "white" }}><h1>Sustainable City Management</h1></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <Button id="home" onClick={this.showComponent.bind(this)} className="buttonStyle">Home</Button>
+              <Button id="bus" onClick={this.showComponent.bind(this)} className="buttonStyle">Dublin Bus</Button>
+              <Button id="bike" onClick={this.showComponent.bind(this)} className="buttonStyle">Dublin Bike</Button>
+              <Button id="pollution" onClick={this.showComponent.bind(this)} className="buttonStyle">Pollution</Button>
+              <Button id="events" onClick={this.showComponent.bind(this)} className="buttonStyle">Events</Button>
+              <Button id="notification" onClick={this.showComponent.bind(this)} className="buttonStyle">Notification</Button>
+              <Notification/>
+              <Button className="buttonStyle" onClick={this.props.logout}>Log Out</Button>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
         <div>
-
-          <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-            <Tab eventKey="Home" title="Home">
-              <Container>
-                <Row className="justify-content-md-center">
-                  <Col >
-                    <Bikechart />
-                  </Col>
-                  <Col >
-                    <div >
-                      <Bikepiechart />
-                    </div>
-                  </Col>
-                </Row>
-              </Container>
-            </Tab>
-
-
-            <Tab eventKey="DublinBus" title="DublinBus">
-              <DublinBus />
-            </Tab>
-
-
-            <Tab eventKey="Pollution" title="Pollution">
-              <Pollution />
-            </Tab>
-
-
-            <Tab eventKey="DublinBike" title="Dublin Bike">
-              <DublinBike />
-            </Tab>
-
-
-            <Tab eventKey="Events" title="Events">
-              <Event />
-            </Tab>
-
-            <Tab eventKey="Traffic" title="Traffic">
-              <Traffic />
-            </Tab>
-
-
-
-
-
-            <Tab eventKey="Exp" title="Exp">
-              <Exp />
-            </Tab>
-          </Tabs>
+          {this.showComponent()}
+          }
         </div>
-
-
-        {/* chart */}
-
       </div>
     )
   }
-
 };
 
 const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logout })(TabMgmt);
+export default connect(
+  mapStateToProps,
+  { logout }
+)(TabMgmt);
