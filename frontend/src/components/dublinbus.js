@@ -191,7 +191,7 @@ class DublinBus extends React.Component {
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Button style={{marginLeft:"13px"}} className="buttonStyle" onClick={() => this.setState({showTransitMap: true})}>Get Travel Options</Button>
+                                                <Button style={{marginLeft:"13px"}} className="buttonStyle" onClick={() => this.setState({showTransitMap: true})}>View Transportation Options</Button>
                                             </Row>
                                         </Form>
                                         <div>
