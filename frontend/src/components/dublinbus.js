@@ -134,7 +134,7 @@ class DublinBus extends React.Component {
             },
             {
                 name: "",
-                label: "Action",
+                label: "Transit Options",
                 options: {
                     filter: true,
                     sort: false,

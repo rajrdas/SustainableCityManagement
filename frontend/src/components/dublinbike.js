@@ -154,7 +154,7 @@ class DublinBike extends React.Component {
             },
             {
                 name: "",
-                label: "Action",
+                label: "Bike Stand Location on Map",
                 options: {
                     filter: true,
                     sort: false,
