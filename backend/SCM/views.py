@@ -1,5 +1,4 @@
 import json
-
 import requests
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
@@ -90,9 +89,10 @@ def DublinBusView(request):
 # Code for Scheduler, under development --- PLEASE DO NOT CHANGE
 #################################################################
 def getAPIdata():
-    print("[%s] Getting API data" %datetime.now())
+    print("[%s] Getting API data" % datetime.now())
     try:  # Get pollution
-        pol = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
+        pol = requests.get(
+            'http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
         cache.set("pol", pol)
     except Exception as e:
         pass
@@ -112,8 +112,8 @@ def getAPIdata():
         pass
 
     try:  # Get bus
-        bus = requests.get('https://data.smartdublin.ie/cgi-bin/rtpi/busstopinformation')
+        bus = requests.get(
+            'https://data.smartdublin.ie/cgi-bin/rtpi/busstopinformation')
         cache.set("bus", bus)
     except Exception as e:
         pass
-

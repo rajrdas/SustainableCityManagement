@@ -54,13 +54,12 @@ class TabMgmt extends React.Component {
               <Button id="pollution" onClick={this.showComponent.bind(this)} className="buttonStyle">Pollution</Button>
               <Button id="events" onClick={this.showComponent.bind(this)} className="buttonStyle">Events</Button>
               <Notification/>
-              <Button className="button2Style" onClick={this.props.logout}>Log Out</Button>
+              <Button className="buttonStyle" onClick={this.props.logout}>Log Out</Button>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
         <div>
           {this.showComponent()}
-          }
         </div>
       </div>
     )
