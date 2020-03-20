@@ -4,7 +4,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core';
 import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import BusTransitMap from './BusTransitMap';
-import BusStopMap from './BusStopMap';
+import TransitMap from './TransitMap';
 import '../utility/tabmanagement.css'
 
 class DublinBus extends React.Component {
@@ -191,15 +191,21 @@ class DublinBus extends React.Component {
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Button style={{marginLeft:"13px"}} className="buttonStyle" onClick={() => this.setState({showTransitMap: true})}>View Transportation Options</Button>
+                                                <Button style={{ marginLeft: "13px" }} className="buttonStyle" onClick={() => this.setState({ showTransitMap: true })}>View Transportation Options</Button>
                                             </Row>
                                         </Form>
                                         <div>
                                             {
                                                 this.state.showTransitMap === false ?
-                                                    <BusStopMap lat={this.state.originLatitude} long={this.state.originLongitude} />
+                                                    <TransitMap lat={this.state.originLatitude} long={this.state.originLongitude} />
                                                     :
-                                                    <BusTransitMap originLat={this.state.originLatitude} originLong={this.state.originLongitude} destLat={this.state.destLatitude} destLong={this.state.destLongitude}></BusTransitMap>
+                                                    null
+                                            }
+                                            {
+                                                this.state.showTransitMap === true ?
+                                                    <BusTransitMap originLat={this.state.originLatitude} originLong={this.state.originLongitude} destLat={this.state.destLatitude} destLong={this.state.destLongitude} />
+                                                    :
+                                                    null
                                             }
                                         </div>
                                     </Modal.Body>
@@ -252,7 +258,6 @@ class DublinBus extends React.Component {
                             </Col>
                         </Row>
                 }
-
             </div>
         )
     }

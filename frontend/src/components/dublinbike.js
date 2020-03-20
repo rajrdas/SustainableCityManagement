@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { Row, Col, Button, Modal } from 'react-bootstrap';
 import { CircularProgress } from '@material-ui/core';
-import BikeTransitMap from './BikeTransitMap';
+import TransitMap from './TransitMap';
 import '../utility/tabmanagement.css'
 
 class DublinBike extends React.Component {
@@ -169,7 +169,7 @@ class DublinBike extends React.Component {
                                         </Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <BikeTransitMap lat={this.state.latitude} long={this.state.longitude} />
+                                        <TransitMap lat={this.state.latitude} long={this.state.longitude} />
                                     </Modal.Body>
                                 </Modal>
                             </div>
