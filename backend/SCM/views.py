@@ -6,7 +6,6 @@ from rest_framework.decorators import api_view
 from django.core.cache import cache
 from datetime import datetime
 
-
 @api_view()
 def PollutionView(request):
     try:
@@ -101,6 +100,7 @@ def getAPIdata():
         bike = requests.get('https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey'
                             '=77cf7ab00377c7f4cc621765273db0e7daf18f82')
         cache.set("bike", bike)
+
     except Exception as e:
         pass
 
@@ -117,3 +117,17 @@ def getAPIdata():
     except Exception as e:
         pass
 
+
+def data_trend():
+    available_bikes = 0
+    bike_stands = 0
+    try:
+        bikes = cache.get("bikes").json()
+        for bike in bikes:
+            available_bikes += bike["available_bikes"]
+            bike_stands += bike["bike_stands"]
+        print (available_bikes)
+        print (bike_stands)
+
+    except Exception as e:
+        pass
