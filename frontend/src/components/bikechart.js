@@ -20,7 +20,6 @@ class Bikechart extends React.Component {
 			.then(res => res.json())
 			.then((data) => {
 				this.setState({ bike: data });
-				console.log(data)
 			})
 	}
 	showBikeChart() {
