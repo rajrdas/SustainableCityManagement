@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'SCM',
     'corsheaders',            
     'rest_framework',
-    "knox",
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +139,12 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:8000',
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        #'LOCATION': 'unique-snowflake',
+    }
+}
 # # DataFlair #Logging Information
 # LOGGING = {
 #     'version': 1,
