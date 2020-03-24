@@ -4,10 +4,17 @@ from rest_framework.decorators import api_view
 import requests
 import json
 
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 
 @api_view()
 def PollutionView(request):
     try:
+        logger.info('inside pollution api call')
         response = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
     except:
         raise Exception("An exception occurred")
@@ -15,11 +22,8 @@ def PollutionView(request):
     
 @api_view()
 def DublinBikeView(request):
-    response = requests.get(
-        'https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=77cf7ab00377c7f4cc621765273db0e7daf18f82')
-    return HttpResponse(json.dumps(response.json()), content_type="application/json")
-
     try:
+        # raise Exception("Custom error thrown by newbie developer :D")
         response = requests.get(' https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=77cf7ab00377c7f4cc621765273db0e7daf18f82')
     except:
         raise Exception("An exception occurred")

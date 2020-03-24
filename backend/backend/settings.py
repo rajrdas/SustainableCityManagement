@@ -138,3 +138,74 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://localhost:8000',
 ]
+
+# # DataFlair #Logging Information
+# LOGGING = {
+#     'version': 1,
+#     # Version of logging
+#     'disable_existing_loggers': False,
+#     #disable logging 
+#     # Handlers #############################################################
+#     'handlers': {
+#         'debug_file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'dataflair-debug.log',
+#         },
+# ########################################################################
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     # Loggers ####################################################################
+#     'loggers': {
+#         'django': {
+#             'handlers': ['debug_file', 'console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+#         },
+#     },
+# }
+
+LOGGING = {
+	'version':1,
+	'disable_existing_loggers': False,
+	# 'formatters':{
+	# 	'large':{
+	# 		'format':'%(asctime)s  %(levelname)s  %(process)d  %(pathname)s  %(funcName)s  %(lineno)d  %(message)s  '
+	# 	},
+	# 	'tiny':{
+	# 		'format':'%(asctime)s  %(message)s  '
+	# 	}
+	# },
+    'formatters': {
+    'simple': {
+        'format': '%(levelname)s %(asctime)s %(name)s.%(funcName)s:%(lineno)s- %(message)s'
+    },
+    },
+	'handlers':{
+ 'debug_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'log_SCM.log',
+            'formatter': 'simple',
+        },
+		
+	},
+	'loggers':{
+	'django': {
+            'handlers': ['debug_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+        },
+    },
+}
+
+# importing logger settings
+# try:
+#     from .logger_settings import *
+# except Exception as e:
+#     # in case of any error, pass silently.
+#     pass
