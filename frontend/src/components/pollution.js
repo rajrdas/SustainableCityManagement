@@ -1,37 +1,35 @@
 import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-
-
+import { Row, Col } from 'react-bootstrap';
+import { CircularProgress } from '@material-ui/core';
 
 const options = {
-   selectableRows: 'none',  	// Hide the checkbox column
-   elevation: 0,							// Shadow depth applied to Paper component
-   searchPlaceholder: "Start typing keyword to search"
+    selectableRows: 'none',	// Hide the checkbox column
+    elevation: 0, // Shadow depth applied to Paper component
+    searchPlaceholder: "Start typing keyword to search"
 };
 
-
 const columns = [
- {
-  name: "aqih-region",
-  label: "Area",
-  options: {
-   filter: true,
-   sort: true,
-  }
- },
- {
-  name: "aqih",
-  label: "Status",
-  options: {
-   filter: true,
-   sort: false,
-  }
- }
+    {
+        name: "aqih-region",
+        label: "Area",
+        options: {
+            filter: true,
+            sort: true,
+        }
+    },
+    {
+        name: "aqih",
+        label: "Status",
+        options: {
+            filter: true,
+            sort: false,
+        }
+    }
 ];
 
-
-class Event extends React.Component {
+class Pollution extends React.Component {
 
     constructor(props) {
         super(props);
@@ -64,53 +62,58 @@ class Event extends React.Component {
             .then(res => res.json())
             .then((data) => {
                 //console.log(data[0].last_update)
-                this.setState({ pol: data.aqihsummary, offline: false  });
+                this.setState({ pol: data.aqihsummary, offline: false });
             })
             .catch(error => {
                 this.setState({ offline: true });
-                });
+            });
         console.log(this.state.offline);
     }
-
-
 
     render() {
         return (
             <div>
-                <center><h1>Pollution</h1></center>
-                <br />
-                {this.state.offline ?
-                    <div><center>
-                        Connection to the server is broken. Data shown is the last updated data.
-                    </center></div>
-                 : "" }
-
-                <br />
-                <MuiThemeProvider theme={this.getMuiTheme()}>
-                    <MUIDataTable
-                        title={""}
-                        data={this.state.pol}
-                        columns={columns}
-                        options={options}
-                    />
-                </MuiThemeProvider>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <h1 style={{ textAlign: 'center' }}>Pollution</h1>
+                    </Col>
+                    <Col></Col>
+                </Row>
+                {
+                    this.state.offline ?
+                        <div style={{ textAlign: 'center' }}>
+                            Connection to the server is broken. Data shown is the last updated data.
+                    </div>
+                        : ""
+                }
+                {
+                    this.state.pol.length === 0 ?
+                        <div>
+                            <Row>
+                                <Col></Col>
+                                <Col style={{ textAlign: 'center' }}>
+                                    <h3>Loading Data</h3>
+                                    <CircularProgress size={24}
+                                        thickness={4} />
+                                </Col>
+                                <Col></Col>
+                            </Row>
+                        </div>
+                        :
+                        <MuiThemeProvider theme={this.getMuiTheme()}>
+                            <MUIDataTable
+                                title={""}
+                                data={this.state.pol}
+                                columns={columns}
+                                options={options}
+                            />
+                        </MuiThemeProvider>
+                }
 
             </div>
         )
     }
-
-
 };
 
-
-export default Event;
-
-
-
-
-
-
-
-
-
-
+export default Pollution;
