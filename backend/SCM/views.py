@@ -11,6 +11,22 @@ import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
+def loggerFrontend(request):
+    try:
+
+        print('inside frontend logger')
+        request.body
+        test=str(request.body)
+        test
+        file1 = open("E:/ASE Project/arzoolatest/SustainableCityManagement/frontend/src/frontEndLog.txt","w") 
+        file1.write("hello")
+        file1.write(str(request.body))
+        file1.close()
+        request._body[0]
+    except Exception as e:
+        raise Exception("An exception occurred")
+    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+
 @api_view()
 def PollutionView(request):
     try:

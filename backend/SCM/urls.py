@@ -6,7 +6,8 @@ from SCM.views import (
     DublinBikeChartView,
     DublinBusView,
     getAPIdata,
-    data_trend
+    data_trend,
+    loggerFrontend 
 )
 from django.urls import path
 from timeloop import Timeloop
@@ -22,6 +23,7 @@ urlpatterns = [
     path('biketrend/', DublinBikeChartView, name='DublinBikeChartView'),
     path('event/', EventView, name='EventView'),
     path('dublinbus/', DublinBusView),
+    path('loggerFrontend/', loggerFrontend),
 ]
 
 getAPIdata()  # Initial call to set cache
