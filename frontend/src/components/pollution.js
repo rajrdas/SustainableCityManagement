@@ -4,6 +4,19 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { Row, Col } from 'react-bootstrap';
 import { CircularProgress } from '@material-ui/core';
 
+import log from 'loglevel';
+import remote from 'loglevel-plugin-remote';
+
+const customJSON = log.message
+
+
+log.enableAll();
+
+remote.apply(log, {url: '/SCM/loggerFrontend/' });
+
+// log.info('Inside pollution js');
+// log.warn('warn message from pollution');
+
 const options = {
     selectableRows: 'none',	// Hide the checkbox column
     elevation: 0, // Shadow depth applied to Paper component
@@ -28,6 +41,7 @@ const columns = [
         }
     }
 ];
+
 
 class Pollution extends React.Component {
 
@@ -62,9 +76,11 @@ class Pollution extends React.Component {
             .then(res => res.json())
             .then((data) => {
                 //console.log(data[0].last_update)
-                this.setState({ pol: data.aqihsummary, offline: false });
+               // this.setState({ pol: data.aqihsummary, offline: false });
+               this.setState({ pol: data, offline: false });
             })
             .catch(error => {
+                log.error(error);
                 this.setState({ offline: true });
             });
         console.log(this.state.offline);

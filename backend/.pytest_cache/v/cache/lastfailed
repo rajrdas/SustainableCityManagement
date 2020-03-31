@@ -1,0 +1,4 @@
+{
+  "SCM/tests/test_urls.py": true,
+  "SCM/tests/test_views.py": true
+}

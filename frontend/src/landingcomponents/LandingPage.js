@@ -7,6 +7,7 @@ import { Timeline } from 'react-twitter-widgets'
 import "../../node_modules/video-react/dist/video-react.css";
 import dubVid from '../utility/Dublin4K.mp4'
 
+
 class LandingPage extends React.Component {
     render() {
         return (

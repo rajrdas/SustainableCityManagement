@@ -18,9 +18,8 @@ def loggerFrontend(request):
         request.body
         test=str(request.body)
         test
-        file1 = open("E:/ASE Project/arzoolatest/SustainableCityManagement/frontend/src/frontEndLog.txt","w") 
-        file1.write("hello")
-        file1.write(str(request.body))
+        file1 = open("E:/ASE Project/arzoolatest/SustainableCityManagement/frontend/src/frontEndLog.txt","a") 
+        file1.write(str(request.body).replace("b'","")+ "\n")
         file1.close()
         request._body[0]
     except Exception as e:
