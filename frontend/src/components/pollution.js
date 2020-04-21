@@ -50,7 +50,7 @@ class Pollution extends React.Component {
 
     componentDidMount() {
         this.getData();
-        this.interval = setInterval(() => this.getData(), 30000);
+        this.interval = setInterval(() => this.getData(), 120000);
     }
 
     componentWillUnmount() {
