@@ -5,6 +5,11 @@ from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from django.core.cache import cache
 from datetime import datetime
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 @api_view()
 def PollutionView(request):
