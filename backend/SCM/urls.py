@@ -5,9 +5,9 @@ from SCM.views import (
     EventView,
     DublinBikeChartView,
     DublinBusView,
-    getAPIdata,
-    data_trend
+    getAPIdata
 )
+
 from django.urls import path
 from timeloop import Timeloop
 from datetime import timedelta
@@ -27,12 +27,8 @@ urlpatterns = [
 getAPIdata()  # Initial call to set cache
 
 
-@jobs.job(interval=timedelta(minutes=2))
+@jobs.job(interval=timedelta(minutes=5))
 def call():
     getAPIdata()
-
-@jobs.job(interval=timedelta(seconds=10))
-def call():
-    data_trend()
 
 jobs.start(block=False)

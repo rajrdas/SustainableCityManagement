@@ -91,10 +91,12 @@ def DublinBusView(request):
 
 
 #################################################################
-# Code for Scheduler, under development --- PLEASE DO NOT CHANGE
+# Code for Scheduler --- PLEASE DO NOT CHANGE
 #################################################################
 def getAPIdata():
     print("[%s] Getting API data" %datetime.now())
+    logger.error("Getting API data")
+
     try:  # Get pollution
         pol = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
         cache.set("pol", pol)
@@ -119,20 +121,5 @@ def getAPIdata():
     try:  # Get bus
         bus = requests.get('https://data.smartdublin.ie/cgi-bin/rtpi/busstopinformation')
         cache.set("bus", bus)
-    except Exception as e:
-        pass
-
-
-def data_trend():
-    available_bikes = 0
-    bike_stands = 0
-    try:
-        bikes = cache.get("bikes").json()
-        for bike in bikes:
-            available_bikes += bike["available_bikes"]
-            bike_stands += bike["bike_stands"]
-        print (available_bikes)
-        print (bike_stands)
-
     except Exception as e:
         pass
