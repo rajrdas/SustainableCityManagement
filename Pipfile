@@ -16,6 +16,8 @@ django-rest-knox = "*"
 pusher-push-notifications = "*"
 django-background-tasks = "*"
 timeloop = "*"
+django-extensions = "*"
+pydotplus = "*"
 
 [requires]
 python_version = "3.7"
