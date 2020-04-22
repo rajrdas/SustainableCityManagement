@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { Row, Col, Button, Modal, Tabs, Tab } from 'react-bootstrap';
 import { CircularProgress } from '@material-ui/core';
-import TransitMap from './BikeTransitMap';
+import TransitMap from './TransitMap';
 import DublinBikeClusters from './DublinBikeClusters';
 import '../utility/tabmanagement.css'
 import BikeAvailabilityChart from './BikeAvailabilityChart';
@@ -208,7 +208,7 @@ class DublinBike extends React.Component {
                                         </Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <TransitMap lat={this.state.latitude} long={this.state.longitude} />
+                                        <TransitMap lat={this.state.latitude} long={this.state.longitude} defaultZoom={14}/>
                                     </Modal.Body>
                                 </Modal>
                             </div>
