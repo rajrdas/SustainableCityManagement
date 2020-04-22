@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from django.core.cache import cache
 from datetime import datetime
 from django.views import View
+
 # import the logging library
 import logging
 
@@ -41,6 +42,7 @@ class DublinBikeViewClass(View):
             return HttpResponse(json.dumps(self.responseOfDublinView.json()), content_type="application/json")
         except Exception as e:
             raise Exception("An exception occurred")
+
 
 
 class DublinBikeViewClass(View):
@@ -163,6 +165,6 @@ def getAPIdata():
     except Exception as e:
         pass
 
-
 def getBikeInfo():
     pass
+
