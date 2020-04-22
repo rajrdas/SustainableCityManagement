@@ -19,7 +19,7 @@ const BikeAvailabilityChart = (props) => {
         }],
         yAxis: [{
             title : {
-                text: 'Bikes Available'
+                text: 'No of bikes available'
             }
         }],
         xAxis: [{
