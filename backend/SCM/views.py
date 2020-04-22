@@ -15,24 +15,26 @@ import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
+
 class PollutionViewClass(View):
 
     def __init__(self):
         self.responseOfPollutionView = {}
 
-    def get(self,request):
+    def get(self, request):
         try:
             self.responseOfPollutionView = cache.get("pol")
             return HttpResponse(json.dumps(self.responseOfPollutionView.json()), content_type="application/json")
         except Exception as e:
             raise Exception("An exception occurred")
 
+
 class DublinBikeViewClass(View):
 
     def __init__(self):
         self.responseOfDublinView = {}
 
-    def get(self,request):
+    def get(self, request):
         try:
             self.responseOfDublinView = cache.get("bike")
             return HttpResponse(json.dumps(self.responseOfDublinView.json()), content_type="application/json")
@@ -40,13 +42,12 @@ class DublinBikeViewClass(View):
             raise Exception("An exception occurred")
 
 
-
 class DublinBikeViewClass(View):
 
     def __init__(self):
         self.responseOfDublinView = {}
 
-    def get(self,request):
+    def get(self, request):
         try:
             self.responseOfDublinView = cache.get("bike")
             return HttpResponse(json.dumps(self.responseOfDublinView.json()), content_type="application/json")
@@ -59,19 +60,20 @@ class EventViewClass(View):
     def __init__(self):
         self.responseOfEventView = {}
 
-    def get(self,request):
+    def get(self, request):
         try:
             self.responseOfEventView = cache.get("event")
             return HttpResponse(json.dumps(self.responseOfEventView.json()), content_type="application/json")
         except Exception as e:
             raise Exception("An exception occurred")
 
+
 class DublinBikeChartViewClass(View):
 
     def __init__(self):
         self.responseOfDublinChartView = {}
 
-    def get(self,request):
+    def get(self, request):
         try:
             self.responseOfDublinChartView = cache.get("bike")
             response = self.responseOfDublinChartView.json()
@@ -113,12 +115,13 @@ def push_notify(request):
     )
     return HttpResponse("Pass!")
 
+
 class DublinBusViewClass(View):
 
     def __init__(self):
         self.responseOfDublinBusView = {}
 
-    def get(self,request):
+    def get(self, request):
         try:
             self.responseOfDublinBusView = cache.get("bus")
             return HttpResponse(json.dumps(self.responseOfDublinBusView.json()), content_type="application/json")
@@ -126,12 +129,11 @@ class DublinBusViewClass(View):
             raise Exception("An exception occurred")
 
 
-
 #################################################################
 # Code for Scheduler --- PLEASE DO NOT CHANGE
 #################################################################
 def getAPIdata():
-    print("[%s] Getting API data" %datetime.now())
+    print("[%s] Getting API data" % datetime.now())
     logger.error("Getting API data")
 
     try:  # Get pollution
@@ -161,6 +163,6 @@ def getAPIdata():
     except Exception as e:
         pass
 
+
 def getBikeInfo():
     pass
-

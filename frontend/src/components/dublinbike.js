@@ -1,18 +1,16 @@
 import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import { Row, Col, Button, Modal, Tabs, Tab } from 'react-bootstrap';
+import { Row, Col, Button, Modal} from 'react-bootstrap';
 import { CircularProgress } from '@material-ui/core';
 import TransitMap from './TransitMap';
-import DublinBikeClusters from './DublinBikeClusters';
 import '../utility/tabmanagement.css'
-import BikeAvailabilityChart from './BikeAvailabilityChart';
 
 class DublinBike extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { dublinbike: [], offline: false, latitude: "", longitude: "", clusterDict: [], selectedColumn: "" };
+        this.state = { dublinbike: [], offline: false, latitude: "", longitude: "" };
     }
 
     getMuiTheme = () => createMuiTheme({
@@ -29,45 +27,7 @@ class DublinBike extends React.Component {
 
     componentDidMount() {
         this.getData();
-        this.getBikeClusters();
         this.interval = setInterval(() => this.getData(), 120000);
-        this.setState({ selectedColumn: "BOLTON STREET" })
-    }
-
-    handleChange(e) {
-
-
-        this.setState({ selectedColumn: e.target.value });
-        this.getBikeAvailabilityChart();
-    }
-
-    getBikeAvailabilityChart() {
-        var data = require('../utility/BikeAvailability.json');
-        var bikeCount = []
-        var i = 0;
-        for (i = 0; i < data.length; i++) {
-            bikeCount.push(data[i][this.state.selectedColumn])
-        }
-
-        return <BikeAvailabilityChart bikeCount={bikeCount} stop={this.state.selectedColumn} />
-    }
-    getBikeClusters() {
-
-        var data = require('../utility/clusters.json');
-        var i = 0
-
-        for (i = 0; i < data.length; i++) {
-            if (data[i].Cluster === 1) {
-                data[i].Color = 'http://mt.google.com/vt/icon?psize=27&font=fonts/Roboto-Bold.ttf&color=ff135C13&name=icons/spotlight/spotlight-waypoint-a.png&ax=43&ay=50&text=•&scale=1';
-            } else {
-                data[i].Color = 'http://mt.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1';
-            }
-        }
-        var cluster = []
-        cluster.push(data)
-
-        this.setState({ clusterDict: cluster });
-
     }
 
     componentWillUnmount() {
@@ -82,6 +42,7 @@ class DublinBike extends React.Component {
 
                     let unix_timestamp = element.last_update
                     // Create a new JavaScript Date object based on the timestamp
+                    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
                     var date = new Date(unix_timestamp);
                     // Hours part from the timestamp
                     var hours = date.getHours();
@@ -208,7 +169,7 @@ class DublinBike extends React.Component {
                                         </Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <TransitMap lat={this.state.latitude} long={this.state.longitude} defaultZoom={14}/>
+                                        <TransitMap lat={this.state.latitude} long={this.state.longitude} />
                                     </Modal.Body>
                                 </Modal>
                             </div>
@@ -221,92 +182,43 @@ class DublinBike extends React.Component {
 
         return (
             <div>
-                <Tabs defaultActiveKey="dublinBike" id="dublinBikeTab">
-                    <Tab eventKey="dublinBike" title="Dublin Bikes">
-                        <Row>
-                            <Col></Col>
-                            <Col>
-                                <h1 style={{ textAlign: 'center' }}>Dublin Bike</h1>
-                            </Col>
-                            <Col></Col>
-                        </Row>
-                        {
-                            this.state.offline ?
-                                <div style={{ textAlign: 'center' }}>
-                                    Connection to the server is broken. Data shown is the last updated data.
-                    </div>
-                                : ""
-                        }
-                        {
-                            this.state.dublinbike.length === 0 ?
-                                <div>
-                                    <Row>
-                                        <Col></Col>
-                                        <Col style={{ textAlign: 'center' }}>
-                                            <h3>Loading Data</h3>
-                                            <CircularProgress size={24}
-                                                thickness={4} />
-                                        </Col>
-                                        <Col></Col>
-                                    </Row>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <h1 style={{ textAlign: 'center' }}>Dublin Bike</h1>
+                    </Col>
+                    <Col></Col>
+                </Row>
+                {
+                    this.state.offline ?
+                        <div style={{ textAlign: 'center' }}>
+                            Connection to the server is broken. Data shown is the last updated data.
                                 </div>
-                                :
-                                <MuiThemeProvider theme={this.getMuiTheme()}>
-                                    <MUIDataTable
-                                        title={""}
-                                        data={this.state.dublinbike}
-                                        columns={columns}
-                                        options={options}
-                                    />
-                                </MuiThemeProvider>
-                        }
-                    </Tab>
-                    <Tab eventKey="clusters" title="Dublin Bike Clusters">
+                        : ""
+                }
+                {
+                    this.state.dublinbike.length === 0 ?
                         <div>
-                            <Row style={{ margin: "5px" }}>
-                                <h3>Legend</h3>
-                            </Row>
-                            <Row style={{ margin: "5px" }}>
-                                <img src='http://mt.google.com/vt/icon?psize=27&font=fonts/Roboto-Bold.ttf&color=ff135C13&name=icons/spotlight/spotlight-waypoint-a.png&ax=43&ay=50&text=•&scale=1' alt="Cluster 1" />
-                                <h4 style={{ marginLeft: "5px" }}> - People riding bikes from these particular stops to Dublin City Center</h4>
-                            </Row>
-                            <Row style={{ margin: "5px" }}>
-                                <img src='http://mt.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=1' alt="Cluster 2" />
-                                <h4 style={{ marginLeft: "5px" }}> - People riding bikes from these particular stops to areas other than Dublin City Center</h4>
+                            <Row>
+                                <Col></Col>
+                                <Col style={{ textAlign: 'center' }}>
+                                    <h3>Loading Data</h3>
+                                    <CircularProgress size={24}
+                                        thickness={4} />
+                                </Col>
+                                <Col></Col>
                             </Row>
                         </div>
-                        <DublinBikeClusters clusterDict={this.state.clusterDict} />
-                    </Tab>
-                    <Tab eventKey="bikeChart" title="Available Bikes Prediction">
-                        <Row style={{ margin: "5px" }}>
-                            <Col md="auto">
-                                <label htmlFor="bikeStop">Select a Bike Stop</label>
-                            </Col>
-                            <Col>
-                                <p style={{ textAlign: "center", color: "red" }}>Due to the COVID-19 PANDEMIC, bike predictions might vary a little.</p>
-                            </Col>
-                            <Col md="auto"></Col>
-                        </Row>
-                        <Row style={{ margin: "5px" }}>
-                            <select id="cars" style={{ borderRadius: "5px", border: "1px solid black" }} value={this.state.selectedColumn}
-                                onChange={this.handleChange.bind(this)} >
-                                <option value="BOLTON STREET">BOLTON STREET</option>
-                                <option value="PARNELL SQUARE NORTH">PARNELL SQUARE NORTH</option>
-                                <option value="PEARSE STREET">PEARSE STREET</option>
-                                <option value="CUSTOM HOUSE">CUSTOM HOUSE</option>
-                                <option value="HANOVER QUAY">HANOVER QUAY</option>
-                                <option value="KILMAINHAM GAOL">KILMAINHAM GAOL</option>
-                                <option value="TALBOT STREET">TALBOT STREET</option>
-                                <option value="HEUSTON STATION (CENTRAL)">HEUSTON STATION (CENTRAL)</option>
-                                <option value="HIGH STREET">HIGH STREET</option>
-                                <option value="DAME STREET">DAME STREET</option>
-                            </select>
-                        </Row>
-                        <Row>
-                            {this.getBikeAvailabilityChart()}
-                        </Row>
-                    </Tab>
-                </Tabs>
+                        :
+                        <MuiThemeProvider theme={this.getMuiTheme()}>
+                            <MUIDataTable
+                                title={""}
+                                data={this.state.dublinbike}
+                                columns={columns}
+                                options={options}
+                            />
+                        </MuiThemeProvider>
+                }
             </div>
         )
     }
