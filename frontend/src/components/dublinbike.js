@@ -31,29 +31,28 @@ class DublinBike extends React.Component {
         this.getData();
         this.getBikeClusters();
         this.interval = setInterval(() => this.getData(), 30000);
-        this.setState({selectedColumn: "BOLTON STREET"})
-        }
+        this.setState({ selectedColumn: "BOLTON STREET" })
+    }
 
-    handleChange(e){
-        
-        
-        this.setState({selectedColumn:e.target.value});
+    handleChange(e) {
+
+
+        this.setState({ selectedColumn: e.target.value });
         this.getBikeAvailabilityChart();
-      }
+    }
 
     getBikeAvailabilityChart() {
         var data = require('../utility/BikeAvailability.json');
         var bikeCount = []
         var i = 0;
-        for(i =0; i < data.length; i++)
-        {
+        for (i = 0; i < data.length; i++) {
             bikeCount.push(data[i][this.state.selectedColumn])
-        } 
-        
-        return <BikeAvailabilityChart bikeCount = {bikeCount} stop= {this.state.selectedColumn}/>
-    }  
+        }
+
+        return <BikeAvailabilityChart bikeCount={bikeCount} stop={this.state.selectedColumn} />
+    }
     getBikeClusters() {
-       
+
         var data = require('../utility/clusters.json');
         var i = 0
 
@@ -281,7 +280,13 @@ class DublinBike extends React.Component {
                     </Tab>
                     <Tab eventKey="bikeChart" title="Available Bikes Prediction">
                         <Row style={{ margin: "5px" }}>
-                            <label htmlFor="bikeStop">Select a Bike Stop</label>
+                            <Col md="auto">
+                                <label htmlFor="bikeStop">Select a Bike Stop</label>
+                            </Col>
+                            <Col>
+                                <p style={{ textAlign: "center", color: "red" }}>Due to the COVID19 PANDEMIC, bike predictions might vary a little.</p>
+                            </Col>
+                            <Col md="auto"></Col>
                         </Row>
                         <Row style={{ margin: "5px" }}>
                             <select id="cars" style={{ borderRadius: "5px", border: "1px solid black" }} value={this.state.selectedColumn}
