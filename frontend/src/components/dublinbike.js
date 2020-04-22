@@ -30,7 +30,7 @@ class DublinBike extends React.Component {
     componentDidMount() {
         this.getData();
         this.getBikeClusters();
-        this.interval = setInterval(() => this.getData(), 30000);
+        this.interval = setInterval(() => this.getData(), 120000);
         this.setState({ selectedColumn: "BOLTON STREET" })
     }
 
@@ -82,7 +82,6 @@ class DublinBike extends React.Component {
 
                     let unix_timestamp = element.last_update
                     // Create a new JavaScript Date object based on the timestamp
-                    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
                     var date = new Date(unix_timestamp);
                     // Hours part from the timestamp
                     var hours = date.getHours();
