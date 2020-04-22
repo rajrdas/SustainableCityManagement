@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
@@ -30,7 +30,7 @@ const BikeAvailabilityChart = (props) => {
     };
     
     return (
-        <div style={{margin:"5px"}}>
+        <div style={{margin:"5px", width:"100%"}}>
             <HighchartsReact highcharts = {Highcharts} options={options} />
         </div>
     );
