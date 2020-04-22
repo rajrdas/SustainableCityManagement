@@ -1,9 +1,9 @@
 import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import { Row, Col, Button, Modal } from 'react-bootstrap';
+import { Row, Col, Button, Modal} from 'react-bootstrap';
 import { CircularProgress } from '@material-ui/core';
-import BikeTransitMap from './BikeTransitMap';
+import TransitMap from './TransitMap';
 import '../utility/tabmanagement.css'
 
 class DublinBike extends React.Component {
@@ -43,7 +43,7 @@ class DublinBike extends React.Component {
                     let unix_timestamp = element.last_update
                     // Create a new JavaScript Date object based on the timestamp
                     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-                    var date = new Date(unix_timestamp * 1000);
+                    var date = new Date(unix_timestamp);
                     // Hours part from the timestamp
                     var hours = date.getHours();
                     // Minutes part from the timestamp
@@ -67,7 +67,7 @@ class DublinBike extends React.Component {
     }
 
     onRowClick = (rowData) => {
-        console.log(rowData[2])
+
         this.setState({ latitude: rowData[2], longitude: rowData[3] });
     }
 
@@ -154,14 +154,14 @@ class DublinBike extends React.Component {
             },
             {
                 name: "",
-                label: "Action",
+                label: "Bike Stand Location on Map",
                 options: {
                     filter: true,
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         return (
                             <div>
-                                <Button className="buttonStyle" style={{display:"inline-block"}} onClick={this.open.bind(this)}>View Bike Stand Location</Button>
+                                <Button className="buttonStyle" style={{ display: "inline-block" }} onClick={this.open.bind(this)}>View Bike Stand Location</Button>
                                 <Modal size="lg" show={this.state.showModal} onHide={this.close.bind(this)}>
                                     <Modal.Header closeButton>
                                         <Modal.Title id="contained-modal-title-vcenter">
@@ -169,7 +169,7 @@ class DublinBike extends React.Component {
                                         </Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <BikeTransitMap lat={this.state.latitude} long={this.state.longitude} defaultZoom={14}/>
+                                        <TransitMap lat={this.state.latitude} long={this.state.longitude} />
                                     </Modal.Body>
                                 </Modal>
                             </div>
@@ -193,7 +193,7 @@ class DublinBike extends React.Component {
                     this.state.offline ?
                         <div style={{ textAlign: 'center' }}>
                             Connection to the server is broken. Data shown is the last updated data.
-                    </div>
+                                </div>
                         : ""
                 }
                 {

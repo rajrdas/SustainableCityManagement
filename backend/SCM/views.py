@@ -1,54 +1,91 @@
 import json
-
+import logging
 import requests
+from datetime import datetime
+from django.core.cache import cache
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from django.core.cache import cache
 from datetime import datetime
+from django.views import View
 
-@api_view()
-def PollutionView(request):
-    try:
-        response = cache.get("pol")
-    except Exception as e:
-        raise Exception("An exception occurred")
-    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+# import the logging library
+import logging
 
-
-@api_view()
-def DublinBikeView(request):
-    try:
-        response = cache.get("bike")
-    except:
-        raise Exception("An exception occurred")
-
-    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 
-@api_view()
-def EventView(request):
-    try:
-        response = cache.get("event")
-    except:
-        raise Exception("An exception occurred")
+class PollutionViewClass(View):
 
-    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+    def __init__(self):
+        self.responseOfPollutionView = {}
+
+    def get(self, request):
+        try:
+            self.responseOfPollutionView = cache.get("pol")
+            return HttpResponse(json.dumps(self.responseOfPollutionView.json()), content_type="application/json")
+        except Exception as e:
+            raise Exception("An exception occurred")
 
 
-@api_view()
-def DublinBikeChartView(request):
-    try:
-        response = cache.get("bike")
-        response = response.json()
-        data = []
-        for x in range(len(response)):
-            Data = {}
-            Data['label'] = response[x]['name']
-            Data['value'] = str(response[x]['available_bikes'])
-            data.append(Data)
-    except:
-        raise Exception("An exception occurred")
-    return HttpResponse(json.dumps(data), content_type="application/json")
+class DublinBikeViewClass(View):
+
+    def __init__(self):
+        self.responseOfDublinView = {}
+
+    def get(self, request):
+        try:
+            self.responseOfDublinView = cache.get("bike")
+            return HttpResponse(json.dumps(self.responseOfDublinView.json()), content_type="application/json")
+        except Exception as e:
+            raise Exception("An exception occurred")
+
+
+class DublinBikeViewClass(View):
+
+    def __init__(self):
+        self.responseOfDublinView = {}
+
+    def get(self, request):
+        try:
+            self.responseOfDublinView = cache.get("bike")
+            return HttpResponse(json.dumps(self.responseOfDublinView.json()), content_type="application/json")
+        except Exception as e:
+            raise Exception("An exception occurred")
+
+
+class EventViewClass(View):
+
+    def __init__(self):
+        self.responseOfEventView = {}
+
+    def get(self, request):
+        try:
+            self.responseOfEventView = cache.get("event")
+            return HttpResponse(json.dumps(self.responseOfEventView.json()), content_type="application/json")
+        except Exception as e:
+            raise Exception("An exception occurred")
+
+
+class DublinBikeChartViewClass(View):
+
+    def __init__(self):
+        self.responseOfDublinChartView = {}
+
+    def get(self, request):
+        try:
+            self.responseOfDublinChartView = cache.get("bike")
+            response = self.responseOfDublinChartView.json()
+            data = []
+            for x in range(len(response)):
+                Data = {}
+                Data['label'] = response[x]['name']
+                Data['value'] = str(response[x]['available_bikes'])
+                data.append(Data)
+            return HttpResponse(json.dumps(data), content_type="application/json")
+        except Exception as e:
+            raise Exception("An exception occurred")
 
 
 def push_notify(request):
@@ -79,17 +116,26 @@ def push_notify(request):
     return HttpResponse("Pass!")
 
 
-@api_view()
-def DublinBusView(request):
-    response = cache.get("bus")
-    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+class DublinBusViewClass(View):
+
+    def __init__(self):
+        self.responseOfDublinBusView = {}
+
+    def get(self, request):
+        try:
+            self.responseOfDublinBusView = cache.get("bus")
+            return HttpResponse(json.dumps(self.responseOfDublinBusView.json()), content_type="application/json")
+        except Exception as e:
+            raise Exception("An exception occurred")
 
 
 #################################################################
-# Code for Scheduler, under development --- PLEASE DO NOT CHANGE
+# Code for Scheduler --- PLEASE DO NOT CHANGE
 #################################################################
 def getAPIdata():
-    print("[%s] Getting API data" %datetime.now())
+    print("[%s] Getting API data" % datetime.now())
+    logger.error("Getting API data")
+
     try:  # Get pollution
         pol = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
         cache.set("pol", pol)
@@ -118,16 +164,5 @@ def getAPIdata():
         pass
 
 
-def data_trend():
-    available_bikes = 0
-    bike_stands = 0
-    try:
-        bikes = cache.get("bikes").json()
-        for bike in bikes:
-            available_bikes += bike["available_bikes"]
-            bike_stands += bike["bike_stands"]
-        print (available_bikes)
-        print (bike_stands)
-
-    except Exception as e:
-        pass
+def getBikeInfo():
+    pass
