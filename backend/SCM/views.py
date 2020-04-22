@@ -1,6 +1,8 @@
 import json
-
+import logging
 import requests
+from datetime import datetime
+from django.core.cache import cache
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from django.core.cache import cache
@@ -24,12 +26,6 @@ class PollutionViewClass(View):
             return HttpResponse(json.dumps(self.responseOfPollutionView.json()), content_type="application/json")
         except Exception as e:
             raise Exception("An exception occurred")
-
-# @api_view()
-# def PollutionView(request):
-#     poll_obj = PollutionViewClass()
-#     response = poll_obj.getPollution()
-#     return HttpResponse(json.dumps(response.json()), content_type="application/json")
 
 class DublinBikeViewClass(View):
 
