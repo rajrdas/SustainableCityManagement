@@ -66,7 +66,7 @@ class LoginForm extends Component {
     <Modal size="sm" show={this.state.showModal} onHide={this.close.bind(this)}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Login Form
+          Login
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

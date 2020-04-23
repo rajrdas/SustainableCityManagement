@@ -15,7 +15,7 @@ class LandingPage extends React.Component {
                     <Col>
                         <Navbar bg="transparent" expand="lg">
                             <Navbar.Brand href="#home">
-                                <h1>Sustainable City Management</h1>
+                                <h1>Dublin Dashboard</h1>
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
