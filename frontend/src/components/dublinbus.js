@@ -40,7 +40,7 @@ class DublinBus extends React.Component {
     }
 
     open(e) {
-        this.setState({ showModal: true });
+        this.setState({ showModal: true, showTransitMap: false });
     }
 
     close() {
@@ -197,10 +197,10 @@ class DublinBus extends React.Component {
                                         <div>
                                             {
                                                 this.state.showTransitMap === false ?
-                                                    <BusStopMap lat={this.state.originLatitude} long={this.state.originLongitude} />
+                                                   <BusStopMap lat={this.state.originLatitude} long={this.state.originLongitude} />
                                                     :
                                                     <BusTransitMap originLat={this.state.originLatitude} originLong={this.state.originLongitude} destLat={this.state.destLatitude} destLong={this.state.destLongitude}></BusTransitMap>
-                                            }
+                                             }
                                         </div>
                                     </Modal.Body>
                                 </Modal>

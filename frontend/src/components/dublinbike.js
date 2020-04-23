@@ -169,7 +169,7 @@ class DublinBike extends React.Component {
                                         </Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <TransitMap lat={this.state.latitude} long={this.state.longitude} />
+                                        <TransitMap lat={this.state.latitude} long={this.state.longitude} defaultZoom={14}/>
                                     </Modal.Body>
                                 </Modal>
                             </div>

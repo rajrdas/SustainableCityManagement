@@ -7,10 +7,9 @@ from SCM.views import (
     DublinBikeChartViewClass,
     DublinBusViewClass
 )
-
+from datetime import timedelta
 from django.urls import path
 from timeloop import Timeloop
-from datetime import timedelta
 
 jobs = Timeloop()
 
@@ -30,5 +29,6 @@ getAPIdata()  # Initial call to set cache
 @jobs.job(interval=timedelta(minutes=5))
 def call():
     getAPIdata()
+
 
 jobs.start(block=False)

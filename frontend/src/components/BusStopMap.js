@@ -13,7 +13,7 @@ const BusStopMap = compose(
   withGoogleMap
 )((props) =>
   <GoogleMap
-    defaultZoom={8}
+    defaultZoom={14}
     defaultCenter={{ lat: parseFloat(props.lat), lng: parseFloat(props.long) }}>
     <Marker position={{ lat: parseFloat(props.lat), lng: parseFloat(props.long) }} />
     <TrafficLayer autoUpdate />

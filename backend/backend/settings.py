@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'vklsmcq6to$4im^smg7u#)45*k(e5vuy4fibx=!#lha8(@4p_)'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -39,14 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SCM',
-    'corsheaders',            
+    'corsheaders',
     'rest_framework',
     'knox',
     'django_extensions',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',    
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,20 +73,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'CityManagement',   
+        'NAME': 'CityManagement',
         'HOST': 'mongodb+srv://root:scmase@scmcluster-rihcm.mongodb.net/CityManagement?retryWrites=true&w=majority',
         'USER': 'root',
         'PASSWORD': 'scmase',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -118,7 +114,6 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -128,7 +123,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -136,14 +130,14 @@ STATIC_URL = '/static/'
 
 # we whitelist localhost:3000 because that's where frontend will be served
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000',
-     'http://localhost:8000',
+    'http://localhost:3000',
+    'http://localhost:8000',
 ]
 
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        #'LOCATION': 'unique-snowflake',
+        # 'LOCATION': 'unique-snowflake',
     }
 }
 # # DataFlair #Logging Information
@@ -176,32 +170,32 @@ CACHES = {
 # }
 
 LOGGING = {
-	'version':1,
-	'disable_existing_loggers': False,
-	# 'formatters':{
-	# 	'large':{
-	# 		'format':'%(asctime)s  %(levelname)s  %(process)d  %(pathname)s  %(funcName)s  %(lineno)d  %(message)s  '
-	# 	},
-	# 	'tiny':{
-	# 		'format':'%(asctime)s  %(message)s  '
-	# 	}
-	# },
+    'version': 1,
+    'disable_existing_loggers': False,
+    # 'formatters':{
+    # 	'large':{
+    # 		'format':'%(asctime)s  %(levelname)s  %(process)d  %(pathname)s  %(funcName)s  %(lineno)d  %(message)s  '
+    # 	},
+    # 	'tiny':{
+    # 		'format':'%(asctime)s  %(message)s  '
+    # 	}
+    # },
     'formatters': {
-    'simple': {
-        'format': '%(levelname)s %(asctime)s %(name)s.%(funcName)s:%(lineno)s- %(message)s'
+        'simple': {
+            'format': '%(levelname)s %(asctime)s %(name)s.%(funcName)s:%(lineno)s- %(message)s'
+        },
     },
-    },
-	'handlers':{
- 'debug_file': {
+    'handlers': {
+        'debug_file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'log_SCM.log',
             'formatter': 'simple',
         },
-		
-	},
-	'loggers':{
-	'django': {
+
+    },
+    'loggers': {
+        'django': {
             'handlers': ['debug_file'],
             'level': 'DEBUG',
             'propagate': True,

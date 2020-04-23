@@ -6,13 +6,14 @@ from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-User._meta.get_field('email')._unique = True     # 2 users cannot have same mail address
+User._meta.get_field('email')._unique = True  # 2 users cannot have same mail address
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email')
+
 
 # Fields for the User registration form
 class RegisterSerializer(serializers.ModelSerializer):
@@ -28,6 +29,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             validated_data['password']
         )
         return user
+
 
 # Fields for the User Login form
 class LoginSerializer(serializers.Serializer):
