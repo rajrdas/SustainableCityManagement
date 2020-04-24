@@ -1,4 +1,4 @@
-from SCM.views import PollutionView, DublinBikeView, DublinBikeChartView, EventView
+from SCM.views import DublinBikeViewClass, PollutionViewClass, EventViewClass, DublinBikeChartViewClass
 from django.test import TestCase, Client
 from django.urls import reverse
 
@@ -7,10 +7,10 @@ class TestViews(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.dublinbike_url = reverse('SCM:DublinBikeView')
-        self.pollution_url = reverse('SCM:PollutionView')
-        self.event_url = reverse('SCM:EventView')
-        self.dublinbikechart_url = reverse('SCM:DublinBikeChartView')
+        self.dublinbike_url = reverse('SCM:DublinBikeViewClass')
+        self.pollution_url = reverse('SCM:PollutionViewClass')
+        self.event_url = reverse('SCM:EventViewClass')
+        self.dublinbikechart_url = reverse('SCM:DublinBikeChartViewClass')
 
     def test_DublinBike_StatusCode(self):
 
@@ -31,7 +31,7 @@ class TestViews(TestCase):
             self.assertTrue(0)
 
     def test_DublinBike_Exception(self):
-        with self.assertRaises(Exception): DublinBikeView(self.dublinbike_url)
+        with self.assertRaises(Exception): DublinBikeViewClass(self.dublinbike_url)
 
     def test_Pollution_StatusCode(self):
 
@@ -52,7 +52,7 @@ class TestViews(TestCase):
             self.assertTrue(0)
 
     def test_Pollution_Exception(self):
-        with self.assertRaises(Exception): PollutionView(self.pollution_url)
+        with self.assertRaises(Exception): PollutionViewClass(self.pollution_url)
 
     def test_Event_StatusCode(self):
 
@@ -73,7 +73,7 @@ class TestViews(TestCase):
             self.assertTrue(0)
 
     def test_Event_Exception(self):
-        with self.assertRaises(Exception): EventView(self.event_url)
+        with self.assertRaises(Exception): EventViewClass(self.event_url)
 
     def test_DublinBikeChart_StatusCode(self):
 
@@ -94,4 +94,4 @@ class TestViews(TestCase):
             self.assertTrue(0)
 
     def test_DublinBikeChart_Exception(self):
-        with self.assertRaises(Exception): DublinBikeChartView(self.dublinbikechart_url)
+        with self.assertRaises(Exception): DublinBikeChartViewClass(self.dublinbikechart_url)

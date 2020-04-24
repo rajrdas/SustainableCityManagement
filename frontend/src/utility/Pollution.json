@@ -1,0 +1,188 @@
+[
+  {
+    "_id": "5e7575e993454aec2edfd833",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:02.2"
+  },
+  {
+    "_id": "5e7598f3490b0eb85c564d36",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:01.6"
+  },
+  {
+    "_id": "5e75a054e105ea6f4251d47d",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:20.7"
+  },
+  {
+    "_id": "5e7677821c9d4400001721a3",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:20.7"
+  },
+  {
+    "_id": "5e76f0d521531854e3909db7",
+    "pollution_level": 2,
+    "pollution": "Good",
+    "timestamp": "00:05.3"
+  },
+  {
+    "_id": "5e7799933c5583ded29c19b8",
+    "pollution_level": 2,
+    "pollution": "Good",
+    "timestamp": "00:03.8"
+  },
+  {
+    "_id": "5e7842555d4f0e802bb6edfc",
+    "pollution_level": 2,
+    "pollution": "Good",
+    "timestamp": "00:05.5"
+  },
+  {
+    "_id": "5e78eb1a2b72d1e7631f729c",
+    "pollution_level": 4,
+    "pollution": "Fair",
+    "timestamp": "00:10.6"
+  },
+  {
+    "_id": "5e7993d44f885993404b4783",
+    "pollution_level": 5,
+    "pollution": "Fair",
+    "timestamp": "00:04.7"
+  },
+  {
+    "_id": "5e7a3c93cb96b7b2b44c8905",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.5"
+  },
+  {
+    "_id": "5e7ae55354c03bb6f5881e4f",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.7"
+  },
+  {
+    "_id": "5e7b8e14d4f0abf6a8e205ec",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:04.0"
+  },
+  {
+    "_id": "5e7c36d4dd0e5a366261bcb6",
+    "pollution_level": 5,
+    "pollution": "Fair",
+    "timestamp": "00:04.5"
+  },
+  {
+    "_id": "5e7cdf958acb01c6d62783a3",
+    "pollution_level": 5,
+    "pollution": "Fair",
+    "timestamp": "00:05.3"
+  },
+  {
+    "_id": "5e7d8855c2e2868669a7c3aa",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:05.8"
+  },
+  {
+    "_id": "5e7e3112200884604ca066d4",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:02.3"
+  },
+  {
+    "_id": "5e7ed9d43353d438c8ed3976",
+    "pollution_level": 2,
+    "pollution": "Good",
+    "timestamp": "00:04.4"
+  },
+  {
+    "_id": "5e7f829436ba3257060b6752",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:04.4"
+  },
+  {
+    "_id": "5e801d433afb03c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e80c6045bdd757eadf38fce",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:04.4"
+  },
+  {
+    "_id": "5e801d483afb03c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433a6703c7969e704b",
+    "pollution_level": 4,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433afb03c79612304b",
+    "pollution_level": 4,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d43354633c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433afb1237969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433afb03c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433afb03c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433afb03c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433afb03c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433afb03c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  },
+  {
+    "_id": "5e801d433afb03c7969e704b",
+    "pollution_level": 3,
+    "pollution": "Good",
+    "timestamp": "00:03.1"
+  }
+]
