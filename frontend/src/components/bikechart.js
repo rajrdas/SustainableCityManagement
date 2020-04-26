@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col, Tabs, Tab } from 'react-bootstrap';
 import DublinBikeClusters from './DublinBikeClusters';
 import BikeAvailabilityChart from './BikeAvailabilityChart';
+import PollutionChart from './PollutionChart';
+import Weather from './Weather';
 import '../utility/tabmanagement.css'
 
 class Bikechart extends React.Component {
@@ -53,11 +55,33 @@ class Bikechart extends React.Component {
 
     }
 
+	getPollutionChart() {
+        var data = require('../utility/Pollution.json');
+        var polLevel = []
+        var i = 0;
+        for (i = 0; i < data.length; i++) {
+            polLevel.push(data[i]["pollution_level"])
+
+        }
+
+        return <PollutionChart polLevel={polLevel} />
+    }
+
 
 	render() {
 		return (
 			<div>
-				<Tabs defaultActiveKey="bikeChart" id="dublinBikeTab">
+				<Tabs defaultActiveKey="dashboard" id="dublinBikeTab">
+                    <Tab eventKey="dashboard" title="Dashboard">
+                        <div >
+                            <Row style={{ margin: "5px" }}>
+                                <Col style={{width:"30%", marginLeft: '100px'}}> <Weather />  </Col>
+                                <Col style={{width:"70%", marginRight: '100px', border:"solid 2px black"}}> {this.getPollutionChart()}  </Col>
+                            </Row>
+                        </div>
+                    </Tab>
+
+
 					<Tab eventKey="bikeChart" title="Available Bikes Prediction">
 						<Row style={{ margin: "5px" }}>
 							<Col md="auto">

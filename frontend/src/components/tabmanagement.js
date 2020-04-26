@@ -44,7 +44,7 @@ class TabMgmt extends React.Component {
     return (
       <div>
         <Navbar bg="dark" expand="lg">
-          <Navbar.Brand href="#home" style={{ color: "white" }}><h1>Sustainable City Management</h1></Navbar.Brand>
+          <Navbar.Brand href="#home" style={{ color: "white" }}><h1>Dublin Dashboard</h1></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">

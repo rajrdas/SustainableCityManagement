@@ -2,32 +2,37 @@ import React from 'react'
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-const BikeAvailabilityChart = (props) => {
+const PollutionChart = (props) => {
 
     const options = {
-        title: {
-            text: 'Bikes Available at ' + props.stop + ' stop'
+        chart: {
+            backgroundColor: 'rgba(0,0,0,0)'
         },
         plotOptions: {
             series: {
                 cursor: "pointer",
             }
         },
+        title: {
+            text: 'Pollution Level'
+        },
         series: [{
-            name: 'Bikes Available',
-            data: props.bikeCount
+            name: 'Level',
+            data: props.polLevel,
+            marker: { enabled:false }
         }],
         yAxis: [{
             title : {
-                text: 'No of bikes available'
+                text: 'Pollution Level'
             }
         }],
         xAxis: [{
             title : {
-                text: 'Hours'
+                text: 'Day of the month'
             }
         }]
-    };
+
+     };
 
     return (
         <div style={{margin:"5px", width:"100%"}}>
@@ -36,4 +41,4 @@ const BikeAvailabilityChart = (props) => {
     );
 };
 
-export default BikeAvailabilityChart
+export default PollutionChart
