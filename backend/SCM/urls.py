@@ -1,6 +1,10 @@
+from SCM.analytics import (
+    get_bike_clusters,
+    get_bike_predictions
+)
 from SCM.views import (
     push_notify,
-    getAPIdata,
+    get_API_data,
     PollutionViewClass,
     DublinBikeViewClass,
     EventViewClass,
@@ -23,12 +27,18 @@ urlpatterns = [
     path('dublinbus/', DublinBusViewClass.as_view()),
 ]
 
-getAPIdata()  # Initial call to set cache
+get_API_data()  # Initial call to set cache
 
 
 @jobs.job(interval=timedelta(minutes=5))
 def call():
-    getAPIdata()
+    get_API_data()
+
+
+@jobs.job(interval=timedelta(days=1))
+def analytics():
+    get_bike_clusters()
+    get_bike_predictions()
 
 
 jobs.start(block=False)

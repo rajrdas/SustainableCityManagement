@@ -126,9 +126,8 @@ class DublinBusViewClass(View):
 #################################################################
 # Code for Scheduler --- PLEASE DO NOT CHANGE
 #################################################################
-def getAPIdata():
+def get_API_data():
     print("[%s] Getting API data" % datetime.now())
-    logger.error("Getting API data")
 
     try:  # Get pollution
         pol = requests.get('http://erc.epa.ie/real-time-air/www/aqindex/aqih_json.php')
@@ -156,7 +155,3 @@ def getAPIdata():
         cache.set("bus", bus)
     except Exception as e:
         pass
-
-
-def getBikeInfo():
-    pass

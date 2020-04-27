@@ -18,6 +18,8 @@ django-background-tasks = "*"
 timeloop = "*"
 django-extensions = "*"
 pydotplus = "*"
+sklearn = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.7"
