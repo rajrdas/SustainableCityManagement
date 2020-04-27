@@ -28,6 +28,8 @@ urlpatterns = [
 ]
 
 get_API_data()  # Initial call to set cache
+get_bike_clusters()
+get_bike_predictions()
 
 
 @jobs.job(interval=timedelta(minutes=5))
