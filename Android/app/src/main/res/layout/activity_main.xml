@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+        >
+
+            <TextView
+                    android:id="@+id/conn_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Connection Status"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <Button
+                    android:id="@+id/wifi_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TOGGLE WIFI"/>
+
+            <Button
+                    android:id="@+id/discover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discover"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ListView
+                    android:id="@+id/devices"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:background="@color/colorAccent"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/read_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Read Message"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <EditText
+                    android:id="@+id/entermsg"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+            />
+            <Button
+                    android:id="@+id/send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Send"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
